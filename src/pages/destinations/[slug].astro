@@ -18,6 +18,7 @@ const base=import.meta.env.BASE_URL;
 const experience=getDestinationExperience(destination.slug);
 const destinationRecommendations=experience?getRecommendationsByDestination(destination.slug):[];
 const hero=destination.featuredImage ? `${base}${destination.featuredImage}` : '';
+const visitLabel=destination.visitLabel==='Study abroad'?'':destination.visitLabel;
 ---
 <BaseLayout title={`${destination.name} | Chloe's Travel Atlas`}>
   {experience ? (
@@ -31,7 +32,7 @@ const hero=destination.featuredImage ? `${base}${destination.featuredImage}` : '
       <Nav destination />
       <header class:list={['city-hero','text-hero',!hero && 'no-photo']}>
         {hero && <img src={hero} alt={`${destination.name}, ${destination.country}`} />}
-        <div class="wrap city-head fade visible"><div class="eyebrow">{destination.country} · {destination.visitLabel}</div><h1>{destination.name}</h1><p>{destination.note}</p>{destination.characteristics?.length && <div class="city-meta">{destination.characteristics.map(characteristic=><span>{characteristic}</span>)}</div>}</div>
+        <div class="wrap city-head fade visible"><div class="eyebrow">{destination.country}{visitLabel&&` · ${visitLabel}`}</div><h1>{destination.name}</h1><p>{destination.note}</p>{destination.characteristics?.length && <div class="city-meta">{destination.characteristics.map(characteristic=><span>{characteristic}</span>)}</div>}</div>
       </header>
       <main>
         <section class="section wrap take-grid" id="take"><div><div class="eyebrow rust">From the original blog</div><h2>Your story is already here.</h2>{destination.story.map(paragraph=><p>{paragraph}</p>)}</div><aside class="pull-quote">Photos will be added here when you upload this destination’s folder.</aside></section>
