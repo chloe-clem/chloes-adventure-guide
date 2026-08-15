@@ -138,7 +138,8 @@ async function initializeMap(){
     showMapSetup();
     return;
   }
-  maplibregl=await import('maplibre-gl');
+  const maplibreModule=await import('./maplibreRuntime.js');
+  maplibregl=maplibreModule.default;
   map=new maplibregl.Map({
     container:mapCanvas,
     style:mapContainer.dataset.mapStyle,
