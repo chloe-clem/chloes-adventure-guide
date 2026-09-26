@@ -1,12 +1,14 @@
+---
+const base = import.meta.env.BASE_URL;
+---
 <div class="earth-story" id="top">
   <header class="earth-hero">
-    <canvas id="earthGlobe" aria-label="Interactive globe with country boundaries and visited destinations"></canvas>
+    <img id="earthGlobe" src={`${base}photos/earth-static.webp`} alt="Illustrated globe of Earth" />
     <div class="earth-stars"></div><div class="earth-vignette"></div>
     <div class="earth-copy fade">
       <h1>The world<br />is waiting.</h1>
       <p>Discover destinations that fit the way you want to travel.</p>
     </div>
-    <div class="earth-instructions"><span class="desktop-help">Drag or scroll sideways to turn the Earth</span><span class="mobile-help">Drag to turn the Earth</span></div>
     <div class="earth-scroll-prompt"><span>Scroll to enter the atlas</span><i></i></div>
     <div class="atlas-reveal"><div class="atlas-reveal-copy"><h2>Start with how you want to feel.</h2></div></div>
   </header>

@@ -22,3 +22,29 @@ document.querySelectorAll('.fade').forEach(el=>observer.observe(el));
   };
   document.querySelectorAll('.earth-home-link').forEach(link=>link.addEventListener('click',openEarth));
 })();
+
+(() => {
+  if(!document.body.classList.contains('home')) return;
+  const hero=document.querySelector('.earth-hero'),story=document.querySelector('.earth-story'),nav=document.querySelector('.nav');
+  if(!hero||!story) return;
+  const clamp=v=>Math.max(0,Math.min(1,v));
+  const smoothstep=(a,b,x)=>{x=clamp((x-a)/(b-a));return x*x*(3-2*x)};
+  const updateStory=()=>{
+    const rect=story.getBoundingClientRect(),max=Math.max(1,story.offsetHeight-innerHeight),p=clamp(-rect.top/max);
+    const title=1-smoothstep(.08,.34,p);
+    const earth=1-smoothstep(.25,.55,p);
+    const reveal=smoothstep(.48,.66,p);
+    const revealY=(1-reveal)*28;
+    const blur=smoothstep(.30,.58,p)*5;
+    hero.style.setProperty('--story',p.toFixed(3));
+    hero.style.setProperty('--title-opacity',title.toFixed(3));
+    hero.style.setProperty('--earth-opacity',earth.toFixed(3));
+    hero.style.setProperty('--reveal-opacity',reveal.toFixed(3));
+    hero.style.setProperty('--reveal-y',revealY.toFixed(1)+'px');
+    hero.style.setProperty('--earth-blur',blur.toFixed(2)+'px');
+    nav&&nav.classList.toggle('scrolled',scrollY>80);
+  };
+  addEventListener('scroll',updateStory,{passive:true});
+  addEventListener('resize',updateStory);
+  updateStory();
+})();
