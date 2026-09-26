@@ -21,10 +21,6 @@ npm run dev
 
 The interactive map uses MapLibre GL JS with OpenFreeMap and does not require an account, API key, token, `.env` file, or repository secret.
 
-## Developer photo catalog
-
-The internal photo-library route uses `sharp` directly at build time to read image dimensions and determine orientation. Keeping it as a direct dependency makes that metadata workflow explicit and reliable across local and production installs. The catalog only reads image metadata; it does not resize, compress, rename, duplicate, or otherwise modify source photos.
-
 ## Publish
 1. Create the repository `travel-atlas` under `chloe-clem`.
 2. Push this project to the `main` branch.
