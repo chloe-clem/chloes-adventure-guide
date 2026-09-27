@@ -1,21 +1,29 @@
 ---
+import type { CollectionEntry } from 'astro:content';
 import EditorialTake from './EditorialTake.astro';
 import RecommendationCard from './RecommendationCard.astro';
 import RecommendationExplorerHeader from './RecommendationExplorerHeader.astro';
-import type { Destination } from '../data/destinations';
-import type { DestinationExperience as DestinationExperienceData } from '../data/destinationExperiences';
-import type { Recommendation } from '../data/recommendations';
 
 interface Props {
-  destination: Destination;
-  experience: DestinationExperienceData;
-  recommendations: Recommendation[];
+  destination: CollectionEntry<'destinations'>;
+  Content: any;
 }
 
-const { destination, experience, recommendations } = Astro.props;
+const { destination, Content } = Astro.props;
+const { data } = destination;
 const base = import.meta.env.BASE_URL;
 const assetUrl = (path: string) => `${base}${path}`;
-const recommendationPayload = JSON.stringify(recommendations).replaceAll('<', '\\u003c');
+
+const heroImage = data.heroImage || data.featuredImage;
+const hasRecommendations = data.recommendations.length > 0;
+const hasStories = data.stories.length > 0;
+const visitLabel = data.visitLabel === 'Study abroad' ? '' : data.visitLabel;
+
+// Every destination has its own coordinates already (used for atlas search and
+// feeling-collection filtering), so the map centers there by default even
+// before any recommendation has verified coordinates of its own.
+const mapCenter: [number, number] = [data.longitude, data.latitude];
+const recommendationPayload = JSON.stringify(data.recommendations).replaceAll('<', '\\u003c');
 ---
 
 <a class="destination-back" href={`${base}?return=atlas#atlas-list`} id="destinationBack" data-base={base}>← Back to atlas</a>
@@ -23,110 +31,105 @@ const recommendationPayload = JSON.stringify(recommendations).replaceAll('<', '\
 <nav class="nav">
   <a class="brand" href={base}>Chloe's Travel Atlas</a>
   <div class="navlinks">
-    {experience.navigation.feelings && <a href={`${base}?return=feel#feel`}>Feelings</a>}
-    {experience.navigation.take && <a href="#take">Chloe's Take</a>}
-    {experience.navigation.map && <a href="#map">Map</a>}
-    {experience.navigation.recommendations && <a href="#recommendations">Recommendations</a>}
-    {experience.navigation.stories && <a href="#stories">Stories</a>}
+    <a href={`${base}?return=feel#feel`}>Feelings</a>
+    <a href="#take">Chloe's Take</a>
+    {hasRecommendations && <a href="#map">Map</a>}
+    {hasRecommendations && <a href="#recommendations">Recommendations</a>}
+    {hasStories && <a href="#stories">Stories</a>}
   </div>
 </nav>
 
-<header class="city-hero">
-  <img alt={experience.hero.imageAlt} src={assetUrl(experience.hero.image)} />
+<header class:list={['city-hero', !heroImage && 'no-photo']}>
+  {heroImage && <img alt={data.heroImageAlt} src={assetUrl(heroImage)} />}
   <div class="wrap city-head fade">
-    <div class="eyebrow">{experience.hero.eyebrow}</div>
-    <h1>{destination.name}</h1>
-    <p>{experience.hero.description}</p>
-    <div class="city-meta">{experience.hero.characteristics.map(characteristic => <span>{characteristic}</span>)}</div>
+    <div class="eyebrow">{data.country}{visitLabel && ` · ${visitLabel}`}</div>
+    <h1>{data.name}</h1>
+    <p>{data.note}</p>
+    {data.characteristics.length > 0 && (
+      <div class="city-meta">{data.characteristics.map(characteristic => <span>{characteristic}</span>)}</div>
+    )}
   </div>
 </header>
 
 <main>
-  {experience.sections.take && (
-    <EditorialTake
-      label={experience.editorialTake.label}
-      heading={experience.editorialTake.heading}
-      quote={experience.editorialTake.quote}
-      paragraphs={experience.editorialTake.paragraphs}
-      imageSrc={assetUrl(experience.editorialTake.image)}
-      imageAlt={experience.editorialTake.imageAlt}
-    />
-  )}
+  <EditorialTake
+    label="Chloe's take"
+    heading={data.storyHeading}
+    quote={data.pullQuote}
+    imageSrc={data.storyImage ? assetUrl(data.storyImage) : undefined}
+    imageAlt={data.storyImageAlt}
+  >
+    <Content />
+  </EditorialTake>
 
-  {(experience.sections.recommendations || experience.sections.map) && (
+  {hasRecommendations && (
     <section class="recommendation-explorer" id="recommendations">
-      {experience.sections.recommendations && (
-        <>
-          <RecommendationExplorerHeader destinationName={destination.name} recommendations={recommendations} />
-          <section class="section recommendations" id="recommendationCards">
-            <div class="wrap">
-              <div class="eyebrow rust">{experience.recommendations.eyebrow}</div>
-              <div class="rec-heading"><h2 class="fade">{experience.recommendations.heading}</h2></div>
-              <div class="place-grid">
-                {recommendations.map(recommendation => <RecommendationCard base={base} recommendation={recommendation} />)}
-              </div>
-            </div>
-          </section>
-        </>
-      )}
+      <RecommendationExplorerHeader destinationName={data.name} recommendations={data.recommendations} />
+      <section class="section recommendations" id="recommendationCards">
+        <div class="wrap">
+          <div class="eyebrow rust">Recommendations</div>
+          <div class="rec-heading"><h2 class="fade">{data.recommendationsHeading}</h2></div>
+          <div class="place-grid">
+            {data.recommendations.map(recommendation => <RecommendationCard base={base} recommendation={recommendation} />)}
+          </div>
+        </div>
+      </section>
 
-      {experience.sections.map && (
-        <section class="section map-section" id="map">
-          <div class="wrap map-layout">
-            <div class="map-copy fade">
-              <div class="eyebrow rust">{experience.map.eyebrow}</div>
-              <h2>{experience.map.heading}</h2>
-              <p>{experience.map.description}</p>
+      <section class="section map-section" id="map">
+        <div class="wrap map-layout">
+          <div class="map-copy fade">
+            <div class="eyebrow rust">Every place, on one map</div>
+            <h2>Browse my handpicked recommendations.</h2>
+            <p>Verified recommendations are pinned on the map, so you can see how the city fits together. Explore cafés, museums, hidden gems, and favorite spots in context, not just as a list.</p>
+          </div>
+          <div
+            aria-label={`Interactive map of ${data.name} recommendations`}
+            class="city-map fade"
+            data-map-style="https://tiles.openfreemap.org/styles/positron"
+            data-map-center={mapCenter.join(',')}
+            data-map-zoom="14.1"
+            data-map-selection-zoom="15.6"
+            data-map-min-zoom="11"
+            data-map-max-zoom="18"
+            id="cityMap"
+          >
+            <div class="map-canvas" id="mapCanvas"></div>
+            <div class="map-setup" id="mapSetup" hidden>
+              <div class="eyebrow rust">Map locations coming soon</div>
+              <h3>Verified pins are on the way.</h3>
+              <p>Recommendations will appear here after their exact coordinates are confirmed.</p>
             </div>
-            <div
-              aria-label={`Interactive map of ${destination.name} recommendations`}
-              class="city-map fade"
-              data-map-style={experience.map.style}
-              data-map-center={experience.map.center.join(',')}
-              data-map-zoom={experience.map.zoom}
-              data-map-selection-zoom={experience.map.selectionZoom}
-              data-map-min-zoom={experience.map.minZoom}
-              data-map-max-zoom={experience.map.maxZoom}
-              id="cityMap"
-            >
-              <div class="map-canvas" id="mapCanvas"></div>
-              <div class="map-setup" id="mapSetup" hidden>
-                <div class="eyebrow rust">{experience.map.setupEyebrow}</div>
-                <h3>{experience.map.setupHeading}</h3>
-                <p>{experience.map.setupDescription}</p>
-              </div>
-              <div class="map-card is-cleared" id="mapCard">
-                <img alt="" />
-                <div>
-                  <span>Selected place</span>
-                  <h3></h3>
-                  <p></p>
-                  <div class="map-card-actions">
-                    <button type="button">View recommendation</button>
-                    <a data-map-link="google" href="#" rel="noopener noreferrer" target="_blank">Open in Google Maps</a>
-                    <a data-map-link="apple" href="#" rel="noopener noreferrer" target="_blank">Open in Apple Maps</a>
-                  </div>
+            <div class="map-card is-cleared" id="mapCard">
+              <img alt="" />
+              <div>
+                <span>Selected place</span>
+                <h3></h3>
+                <p></p>
+                <div class="map-card-actions">
+                  <button type="button">View recommendation</button>
+                  <a data-map-link="google" href="#" rel="noopener noreferrer" target="_blank">Open in Google Maps</a>
+                  <a data-map-link="apple" href="#" rel="noopener noreferrer" target="_blank">Open in Apple Maps</a>
                 </div>
               </div>
             </div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
     </section>
   )}
 
-  {experience.sections.stories && (
+  {hasStories && (
     <section class="section wrap" id="stories">
-      <div class="eyebrow rust">{experience.stories.eyebrow}</div>
+      <div class="eyebrow rust">Stories left untold</div>
       <div class="stories-heading">
-        <h2 class="fade">{experience.stories.heading}</h2>
-        <p class="fade">{experience.stories.description}</p>
+        <h2 class="fade">Notes from my time here.</h2>
+        <p class="fade">Select a photograph to see the story, recommendation, or context behind it.</p>
       </div>
       <div class="story-gallery fade" id="storyGallery">
-        {experience.stories.items.map(story => (
+        {data.stories.map(story => (
           <button data-img={assetUrl(story.image)} data-story={story.story} data-title={story.title}>
             <img alt={story.imageAlt} src={assetUrl(story.image)} />
-            <span>{story.statusLabel}</span>
+            <span>Story available</span>
           </button>
         ))}
       </div>
@@ -134,11 +137,11 @@ const recommendationPayload = JSON.stringify(recommendations).replaceAll('<', '\
   )}
 </main>
 
-{experience.sections.stories && (
+{hasStories && (
   <div class="story-modal" hidden id="storyModal">
     <button aria-label="Close" class="modal-close">×</button>
     <img alt="" />
-    <div><span>{experience.stories.modalLabel}</span><h2></h2><p></p></div>
+    <div><span>Stories left untold</span><h2></h2><p></p></div>
   </div>
 )}
 

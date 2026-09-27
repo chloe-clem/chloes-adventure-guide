@@ -1,10 +1,5 @@
 import 'maplibre-gl/dist/maplibre-gl.css';
 
-const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
-  if(entry.isIntersecting) entry.target.classList.add('visible');
-}),{threshold:.1});
-document.querySelectorAll('.fade').forEach(element=>revealObserver.observe(element));
-
 const cards=[...document.querySelectorAll('.place-card[data-place-id]')];
 const sharedFilters=[...document.querySelectorAll('.shared-filter')];
 const recommendationPayload=document.getElementById('destinationRecommendations');
@@ -27,8 +22,7 @@ function readRecommendations(){
 }
 
 function hasVerifiedCoordinates(recommendation){
-  return recommendation.coordinatesVerified===true
-    &&typeof recommendation.latitude==='number'
+  return typeof recommendation.latitude==='number'
     &&Number.isFinite(recommendation.latitude)
     &&recommendation.latitude>=-90
     &&recommendation.latitude<=90

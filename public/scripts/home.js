@@ -1,6 +1,3 @@
-const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.1});
-document.querySelectorAll('.fade').forEach(el=>observer.observe(el));
-
 (() => {
   if(!document.body.classList.contains('home')) return;
   const params=new URLSearchParams(location.search);

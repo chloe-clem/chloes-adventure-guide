@@ -1,24 +1,23 @@
 ---
 interface Props {
   label: string;
-  heading: string;
-  quote: string;
-  paragraphs: string[];
+  heading?: string;
+  quote?: string;
   imageSrc?: string;
   imageAlt?: string;
 }
 
-const { label, heading, quote, paragraphs, imageSrc, imageAlt = '' } = Astro.props;
+const { label, heading, quote, imageSrc, imageAlt = '' } = Astro.props;
 ---
 
 <section class="section wrap editorial-take" id="take">
   <div class="editorial-take-inner fade">
     <div class="editorial-take-content">
       <div class="eyebrow rust">{label}</div>
-      <h2>{heading}</h2>
-      <blockquote>{quote}</blockquote>
+      {heading && <h2>{heading}</h2>}
+      {quote && <blockquote>{quote}</blockquote>}
       <div class="editorial-take-copy">
-        {paragraphs.map(paragraph => <p>{paragraph}</p>)}
+        <slot />
       </div>
     </div>
     {imageSrc && <figure class="editorial-take-figure"><img src={imageSrc} alt={imageAlt} /></figure>}
