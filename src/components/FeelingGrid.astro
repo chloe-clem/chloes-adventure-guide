@@ -1,6 +1,39 @@
 ---
 import { feelings } from '../data/feelings';
-const base=import.meta.env.BASE_URL;
-const assetUrl=(image:string)=>`${base}${image.replace(/^\//,'')}`;
+const base = import.meta.env.BASE_URL;
+const assetUrl = (image: string) => `${base}${image.replace(/^\//, '')}`;
 ---
-<section class="feelings-section" id="feel"><div class="wrap"><div class="feelings-heading"><h2>Start with how you want to feel.</h2></div><div class="collection-grid">{feelings.map(feeling=>(<a class:list={['collection-card',feeling.slug]} href={`${base}feelings/${feeling.slug}/`} style={`--feeling-image:url('${assetUrl(feeling.image)}')`}><div><span>A curated collection</span><h3>{feeling.title}</h3><p>{feeling.cardCopy}</p><em>{feeling.action} →</em></div></a>))}</div><a class="continue-atlas" href="#atlas-list"><strong>Know where you want to go?</strong><span>Keep scrolling to browse the complete atlas ↓</span></a></div></section>
+
+<section class="feel" id="feel">
+  <div class="feel-head">
+    <p class="kicker">Discover destinations that fit the way you want to travel.</p>
+    <h2>Start with how you want to feel.</h2>
+  </div>
+  <div class="feel-grid">
+    {feelings.map((feeling, index) => (
+      <a class="feel-card" href={`${base}feelings/${feeling.slug}/`}>
+        <div class="feel-img"><img src={assetUrl(feeling.image)} alt={feeling.imageAlt ?? ''} loading="lazy" /></div>
+        <span class="num">0{index + 1}</span>
+        <h3>{feeling.title}</h3>
+        <p>{feeling.cardCopy}</p>
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+  .feel { padding:100px 6vw; background:var(--cream); }
+  .feel-head { max-width:760px; margin-bottom:56px; }
+  h2 { font-size:clamp(2.4rem,4.5vw,4rem); line-height:1; margin:0; }
+  .feel-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:22px; }
+  .feel-img { aspect-ratio:4/5; overflow:hidden; border-radius:3px; margin-bottom:16px; }
+  .feel-img img { transition:transform .6s ease; }
+  .feel-card:hover .feel-img img { transform:scale(1.04); }
+  .feel-card:focus-visible { outline:2px solid var(--rust); outline-offset:6px; }
+  .num { font-size:.72rem; letter-spacing:.14em; color:var(--muted); }
+  h3 { font-size:1.6rem; margin:6px 0 8px; }
+  p:not(.kicker) { font-size:.88rem; line-height:1.55; color:var(--muted); margin:0; }
+  @media (prefers-reduced-motion:reduce) { .feel-img img { transition:none; } }
+  @media (max-width:1000px) { .feel-grid { grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:520px) { .feel { padding:70px 6vw; } .feel-grid { grid-template-columns:1fr; } }
+</style>

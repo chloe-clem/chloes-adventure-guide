@@ -9,7 +9,7 @@
     back.href=`${base}feelings/${encodeURIComponent(feeling)}/`;
     back.textContent='← Back to collection';
   }else if(from==='atlas'){
-    back.href=`${base}?return=atlas#atlas-list`;
+    back.href=`${base}#atlas-list`;
     back.textContent='← Back to complete atlas';
   }else if(document.referrer){
     try{

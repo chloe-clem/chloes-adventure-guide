@@ -17,7 +17,7 @@ const needsExplorerScript = destination.data.recommendations.length > 0 || desti
 const base = import.meta.env.BASE_URL;
 ---
 
-<BaseLayout title={`${destination.data.name} | Chloe's Travel Atlas`}>
+<BaseLayout title={`${destination.data.name} | Chloe's Adventure Guide`}>
   <DestinationExperience destination={destination} Content={Content} />
   <script is:inline src={`${base}scripts/fade-reveal.js`}></script>
   <script is:inline src={`${base}scripts/destination-nav.js`}></script>

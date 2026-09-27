@@ -26,12 +26,12 @@ const mapCenter: [number, number] = [data.longitude, data.latitude];
 const recommendationPayload = JSON.stringify(data.recommendations).replaceAll('<', '\\u003c');
 ---
 
-<a class="destination-back" href={`${base}?return=atlas#atlas-list`} id="destinationBack" data-base={base}>← Back to atlas</a>
+<a class="destination-back" href={`${base}#atlas-list`} id="destinationBack" data-base={base}>← Back to atlas</a>
 
 <nav class="nav">
-  <a class="brand" href={base}>Chloe's Travel Atlas</a>
+  <a class="brand" href={base}>Chloe's Adventure Guide</a>
   <div class="navlinks">
-    <a href={`${base}?return=feel#feel`}>Feelings</a>
+    <a href={`${base}#feel`}>Feelings</a>
     <a href="#take">Chloe's Take</a>
     {hasRecommendations && <a href="#map">Map</a>}
     {hasRecommendations && <a href="#recommendations">Recommendations</a>}
@@ -145,6 +145,6 @@ const recommendationPayload = JSON.stringify(data.recommendations).replaceAll('<
   </div>
 )}
 
-<footer class="footer"><div>Chloe's Travel Atlas</div><a href={base}>Back to the globe ↑</a></footer>
+<footer class="footer"><div>Chloe's Adventure Guide</div><a href={base}>Back to home ↑</a></footer>
 
 <script is:inline id="destinationRecommendations" type="application/json" set:html={recommendationPayload}></script>

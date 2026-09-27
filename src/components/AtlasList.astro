@@ -5,41 +5,100 @@ import { getCollection } from 'astro:content';
 const destinations = (await getCollection('destinations')).sort((a, b) =>
   a.data.country.localeCompare(b.data.country) || a.data.name.localeCompare(b.data.name),
 );
-const continents = [...new Set(destinations.map(d=>d.data.continent))].sort();
-const countries = [...new Set(destinations.map(d=>d.data.country))].sort();
-const base=import.meta.env.BASE_URL;
+const continents = [...new Set(destinations.map(d => d.data.continent))].sort();
+const countries = [...new Set(destinations.map(d => d.data.country))].sort();
+const base = import.meta.env.BASE_URL;
 ---
-<section class="destination-ribbon" id="atlas-list"><div class="wrap">
-  <div class="ribbon-head"><div><div class="eyebrow rust">Explore by location</div><h2>The complete atlas</h2></div><p>Search every destination directly, or narrow the list by continent and country.</p></div>
-  <div class="atlas-search-row"><label class="atlas-search">Search destinations<input id="destinationSearch" type="search" placeholder="Try Leiden, Switzerland, mountains…" /></label><div class="geography-filters"><label>Continent<select id="continentFilter"><option value="all">All continents</option>{continents.map(v=><option value={v}>{v}</option>)}</select></label><label>Country<select id="countryFilter"><option value="all">All countries</option>{countries.map(v=><option value={v}>{v}</option>)}</select></label><button id="clearGeo" type="button">Clear</button></div></div>
-  <p class="result-count" id="resultCount"></p><div class="destination-list" id="destinationList">{destinations.map(d => (<a class="destination-line" href={`${base}destinations/${d.slug}/?from=atlas`} data-status="documented" data-search={`${d.data.name} ${d.data.country} ${d.data.continent} ${d.data.note} ${d.data.feelings.join(' ')}`} data-continent={d.data.continent} data-country={d.data.country}><span>{d.data.country}</span><strong>{d.data.name}</strong><em>{d.data.note}</em><i>Explore →</i></a>))}</div>
-</div></section>
+
+<section class="guide" id="atlas-list">
+  <div class="guide-head">
+    <div>
+      <p class="kicker">The guide</p>
+      <h2>{destinations.length} places, and counting.</h2>
+    </div>
+    <p class="intro">Search every destination, or narrow the list by continent and country.</p>
+  </div>
+
+  <div class="controls">
+    <label class="search">Search
+      <input id="destinationSearch" type="search" placeholder="Try Leiden, Switzerland, mountains…" />
+    </label>
+    <label>Continent
+      <select id="continentFilter"><option value="all">All continents</option>{continents.map(v => <option value={v}>{v}</option>)}</select>
+    </label>
+    <label>Country
+      <select id="countryFilter"><option value="all">All countries</option>{countries.map(v => <option value={v}>{v}</option>)}</select>
+    </label>
+    <button id="clearGeo" type="button">Clear</button>
+  </div>
+
+  <p class="count" id="resultCount" aria-live="polite"></p>
+  <div class="rows" id="destinationList">
+    {destinations.map(d => (
+      <a class="row" href={`${base}destinations/${d.slug}/?from=atlas`} data-search={`${d.data.name} ${d.data.country} ${d.data.continent} ${d.data.note} ${d.data.feelings.join(' ')}`} data-continent={d.data.continent} data-country={d.data.country}>
+        <span>{d.data.country}</span><strong>{d.data.name}</strong><em>{d.data.note}</em><i aria-hidden="true">→</i>
+      </a>
+    ))}
+  </div>
+</section>
+
 <script>
-  const items=[...document.querySelectorAll<HTMLElement>('.destination-line')];
-  const search=document.querySelector<HTMLInputElement>('#destinationSearch');
-  const continent=document.querySelector<HTMLSelectElement>('#continentFilter');
-  const country=document.querySelector<HTMLSelectElement>('#countryFilter');
-  const count=document.querySelector<HTMLElement>('#resultCount');
-  const render=()=>{
-    const q=(search?.value||'').trim().toLowerCase();
-    let visible=0;
-    items.forEach(item=>{
-      const ok=(!q||item.dataset.search?.toLowerCase().includes(q))
-        &&(continent?.value==='all'||item.dataset.continent===continent?.value)
-        &&(country?.value==='all'||item.dataset.country===country?.value);
-      item.hidden=!ok;
-      if(ok)visible++;
+  const items = [...document.querySelectorAll<HTMLElement>('#destinationList .row')];
+  const search = document.querySelector<HTMLInputElement>('#destinationSearch');
+  const continent = document.querySelector<HTMLSelectElement>('#continentFilter');
+  const country = document.querySelector<HTMLSelectElement>('#countryFilter');
+  const count = document.querySelector<HTMLElement>('#resultCount');
+  const render = () => {
+    const q = (search?.value || '').trim().toLowerCase();
+    let visible = 0;
+    items.forEach(item => {
+      const ok = (!q || item.dataset.search?.toLowerCase().includes(q))
+        && (continent?.value === 'all' || item.dataset.continent === continent?.value)
+        && (country?.value === 'all' || item.dataset.country === country?.value);
+      item.hidden = !ok;
+      if (ok) visible++;
     });
-    if(count)count.textContent=`${visible} ${visible===1?'place':'places'} in view`;
+    if (count) count.textContent = `${visible} ${visible === 1 ? 'place' : 'places'} in view`;
   };
-  search?.addEventListener('input',render);
-  continent?.addEventListener('change',render);
-  country?.addEventListener('change',render);
-  document.querySelector('#clearGeo')?.addEventListener('click',()=>{
-    if(search)search.value='';
-    if(continent)continent.value='all';
-    if(country)country.value='all';
+  search?.addEventListener('input', render);
+  continent?.addEventListener('change', render);
+  country?.addEventListener('change', render);
+  document.querySelector('#clearGeo')?.addEventListener('click', () => {
+    if (search) search.value = '';
+    if (continent) continent.value = 'all';
+    if (country) country.value = 'all';
     render();
   });
   render();
 </script>
+
+<style>
+  .guide { padding:110px 6vw; }
+  .guide-head { display:grid; grid-template-columns:1.2fr .8fr; gap:6vw; align-items:end; margin-bottom:44px; }
+  h2 { font-size:clamp(2.4rem,4.5vw,4rem); line-height:1; margin:0; }
+  .intro { margin:0; color:var(--muted); font-size:1.02rem; line-height:1.6; }
+  .controls { display:grid; grid-template-columns:1.6fr 1fr 1fr auto; gap:16px; align-items:end; }
+  label { display:grid; gap:8px; font-size:.68rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+  input, select, button { font:inherit; font-size:.95rem; letter-spacing:normal; text-transform:none; color:var(--ink); background:#fff; border:1px solid var(--line); border-radius:4px; padding:13px 14px; }
+  input:focus, select:focus, button:focus-visible { outline:2px solid var(--rust); outline-offset:2px; }
+  button { cursor:pointer; background:transparent; }
+  button:hover { border-color:var(--ink); }
+  .count { margin:28px 0 12px; font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+  .rows { border-top:1px solid var(--line); }
+  .row { display:grid; grid-template-columns:1fr 1.2fr 2.2fr auto; gap:24px; padding:22px 0; border-bottom:1px solid var(--line); align-items:baseline; transition:padding .25s ease, color .25s ease; }
+  .row:hover, .row:focus-visible { padding-left:12px; color:var(--rust); }
+  .row[hidden] { display:none; }
+  .row span { font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+  .row strong { font-family:Fraunces,Georgia,serif; font-weight:400; font-size:1.5rem; }
+  .row em { font-style:normal; color:var(--muted); }
+  .row i { font-style:normal; }
+  @media (prefers-reduced-motion:reduce) { .row { transition:none; } }
+  @media (max-width:900px) {
+    .guide { padding:80px 6vw; }
+    .guide-head { grid-template-columns:1fr; gap:16px; }
+    .controls { grid-template-columns:1fr 1fr; }
+    .search { grid-column:1 / -1; }
+    .row { grid-template-columns:1fr; gap:4px; }
+    .row i { display:none; }
+  }
+</style>

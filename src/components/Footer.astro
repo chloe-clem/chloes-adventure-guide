@@ -1,5 +1,4 @@
 ---
-const { destination=false } = Astro.props;
-const base=import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL;
 ---
-<footer class="footer"><div>Chloe's Travel Atlas</div><a class={destination ? '' : 'earth-home-link'} href={destination ? `${base}#top` : '#top'}>{destination ? 'Back to the globe ↑' : 'Back to Earth ↑'}</a></footer>
+<footer class="footer"><div>Chloe's Adventure Guide</div><a href={base}>Back to home ↑</a></footer>

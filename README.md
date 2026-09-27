@@ -1,11 +1,11 @@
-# Chloe's Travel Atlas, V4.1
+# Chloe's Adventure Guide
 
 Astro foundation configured for GitHub Pages at:
 
 `https://chloe-clem.github.io/travel-atlas/`
 
 ## Included
-- Approved V3.9 homepage and Earth intro
+- Calm editorial homepage built around a photo of Chloe
 - 18 destinations, each a single Markdown file in `src/content/destinations/`
 - Five feeling collections assigned from Chloe's descriptions
 - Source-derived story text on every destination page

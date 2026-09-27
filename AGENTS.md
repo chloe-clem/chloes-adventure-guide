@@ -1,8 +1,10 @@
-# Travel Atlas
+# Chloe's Adventure Guide
 
 ## Mission
 
-Travel Atlas is a long-term portfolio project and travel journal built with Astro.
+Chloe's Adventure Guide (repository: travel-atlas) is a long-term portfolio project and personal travel guide built with Astro.
+
+Tagline: "Personal recommendations for trips that change how you see the world."
 
 This is **not** a template website.
 
@@ -67,7 +69,7 @@ Before making large edits:
 
 # Core Philosophy
 
-Travel Atlas should feel like an experience.
+Chloe's Adventure Guide should feel like an experience.
 
 Never build pages that feel like ordinary blogs.
 
@@ -83,39 +85,31 @@ Whitespace is a design element.
 
 # Approved Homepage
 
-The approved homepage is based on Version 3.9.
+The approved homepage is the calm editorial design (chosen over bolder alternatives): bright warm-white background, Fraunces serif headlines, Inter body text, and a photo of Chloe as the hero. The earlier Earth/globe intro was retired and should not be restored.
 
 Flow:
 
-Earth
+Hero (name, tagline, photo of Chloe)
 
 ↓
 
-Start with how you want to feel
+Why I travel
 
 ↓
 
-Feeling collections
+Start with how you want to feel (feeling collections)
 
 ↓
 
-Keep scrolling
+The guide (searchable list of every destination)
 
-↓
-
-Complete Atlas
-
-The Earth intro is an emotional introduction.
-
-It is not simply a hero section.
+Destination and feeling pages still use the older dark design and are due to be restyled to match.
 
 ---
 
 # Navigation Rules
 
-Earth can always be intentionally revisited.
-
-Returning from feeling pages should NOT replay Earth.
+Destination and feeling pages link back to the homepage's #feel and #atlas-list sections.
 
 Destination pages include subtle navigation.
 

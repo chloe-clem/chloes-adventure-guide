@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 interface Props { title: string; description?: string; bodyClass?: string; }
-const { title, description='A living atlas of places, memories, and changing perspectives.', bodyClass='' } = Astro.props;
+const { title, description='Personal recommendations for trips that change how you see the world.', bodyClass='' } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
@@ -10,12 +10,7 @@ const { title, description='A living atlas of places, memories, and changing per
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <title>{title}</title>
-    <script is:inline>
-      (() => {
-        const r = new URLSearchParams(location.search).get('return');
-        if (r === 'feel' || r === 'atlas') document.documentElement.classList.add('skip-home-intro');
-      })();
-    </script>
+    <slot name="head" />
   </head>
   <body class={bodyClass}>
     <slot />
