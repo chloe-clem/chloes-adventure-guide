@@ -19,20 +19,20 @@ const { recommendation, base } = Astro.props;
   tabindex="0"
 >
   {recommendation.image
-    ? <img alt={recommendation.imageAlt} src={`${base}${recommendation.image}`} />
-    : <div aria-hidden="true" class="place-image-placeholder"></div>}
-  <div class="place-copy">
-    <div class="place-top">
+    ? <img alt={recommendation.imageAlt} src={`${base}${recommendation.image}`} loading="lazy" />
+    : <div aria-hidden="true" class="placeholder"><span>Photo coming soon</span></div>}
+  <div class="copy">
+    <div class="top">
       <div>
-        <span>{interestLabels[recommendation.interests[0]]}</span>
+        <span class="label">{interestLabels[recommendation.interests[0]]}</span>
         <h3>{recommendation.name}</h3>
       </div>
       {recommendation.priceLevel && <b>{recommendation.priceLevel}</b>}
     </div>
     <p>{recommendation.shortDescription}</p>
     {recommendation.whyIRecommendIt && (
-      <div class="recommendation-reason">
-        <span>Recommendation</span>
+      <div class="reason">
+        <span class="label">My tip</span>
         <p>{recommendation.whyIRecommendIt}</p>
       </div>
     )}
@@ -41,3 +41,23 @@ const { recommendation, base } = Astro.props;
     </div>
   </div>
 </article>
+
+<style>
+  .place-card { background:var(--paper); border:1px solid var(--line); border-radius:6px; overflow:hidden; cursor:pointer; transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease, opacity .8s ease; }
+  .place-card:hover { transform:translateY(-3px); box-shadow:0 16px 36px rgba(31,42,38,.10); }
+  .place-card.selected { border-color:var(--rust); box-shadow:0 0 0 1px var(--rust), 0 16px 36px rgba(31,42,38,.12); }
+  img, .placeholder { height:230px; }
+  .placeholder { display:flex; align-items:flex-end; padding:20px 22px; background:var(--cream); }
+  .placeholder span { font-size:.64rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+  .copy { padding:22px 22px 24px; }
+  .top { display:flex; justify-content:space-between; gap:12px; }
+  .label { display:block; font-size:.66rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--rust); }
+  h3 { margin:4px 0 0; font-size:1.45rem; line-height:1.15; }
+  b { font-family:var(--serif); font-weight:400; font-size:1.3rem; }
+  p { margin:10px 0 0; font-size:.92rem; line-height:1.6; color:var(--body); }
+  .reason { margin-top:16px; padding-top:14px; border-top:1px solid var(--line); }
+  .reason p { margin-top:6px; color:var(--muted); font-size:.88rem; }
+  .tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:16px; }
+  .tags span { padding:5px 9px; font-size:.72rem; border-radius:999px; background:var(--cream); color:var(--body); }
+  @media (prefers-reduced-motion:reduce) { .place-card, .place-card:hover { transition:none; transform:none; } }
+</style>

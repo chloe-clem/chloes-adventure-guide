@@ -1,0 +1,29 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+
+<header class="site-header" id="top">
+  <a class="brand" href={base}>Chloe’s Adventure Guide</a>
+  <nav aria-label="Main">
+    <a href={`${base}#feel`}>Feelings</a>
+    <a href={`${base}#atlas-list`}>Destinations</a>
+    <a class="about" href={`${base}#why`}>About</a>
+  </nav>
+</header>
+
+<style>
+  .site-header { position:sticky; top:0; z-index:50; height:var(--header-h); display:flex; justify-content:space-between; align-items:center; gap:20px; padding:0 var(--gutter); background:rgba(251,248,243,.92); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
+  .brand { font-family:var(--serif); font-size:1rem; font-weight:500; letter-spacing:.14em; text-transform:uppercase; white-space:nowrap; }
+  nav { display:flex; gap:28px; font-size:.9rem; color:var(--muted); }
+  nav a:hover { color:var(--ink); }
+  @media (max-width:600px) {
+    .site-header { gap:12px; }
+    .brand { font-size:.74rem; letter-spacing:.08em; }
+    nav { gap:14px; font-size:.8rem; }
+    .about { display:none; }
+  }
+  @media (max-width:380px) {
+    .brand { font-size:.68rem; letter-spacing:.05em; }
+    nav { gap:12px; font-size:.76rem; }
+  }
+</style>

@@ -1,90 +1,64 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 import FeelingGrid from '../components/FeelingGrid.astro';
 import AtlasList from '../components/AtlasList.astro';
 const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout title="Chloe's Adventure Guide">
-  <Fragment slot="head">
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..500;1,9..144,300..500&family=Inter:wght@400;500;600&display=swap" />
-  </Fragment>
+  <SiteHeader />
 
-  <div class="home" id="top">
-    <header class="top">
-      <a class="brand" href={base}>Chloe’s Adventure Guide</a>
-      <nav aria-label="Main"><a href="#feel">Feelings</a><a href="#atlas-list">Destinations</a><a href="#why">About</a></nav>
-    </header>
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="kicker">A personal travel guide</p>
+        <h1>Chloe’s<br />Adventure Guide</h1>
+        <p class="tagline">Personal recommendations for trips that change how you see the world.</p>
+        <a class="text-link" href="#feel">Start exploring →</a>
+      </div>
+      <figure class="hero-photo">
+        <img src={`${base}photos/chloe/IMG_3652.webp`} alt="Chloe smiling, sitting in golden autumn light beside a meadow." width="1200" height="1800" fetchpriority="high" />
+      </figure>
+    </section>
 
-    <main>
-      <section class="hero">
-        <div class="hero-copy">
-          <p class="kicker">A personal travel guide</p>
-          <h1>Chloe’s<br />Adventure Guide</h1>
-          <p class="tagline">Personal recommendations for trips that change how you see the world.</p>
-          <a class="text-link" href="#feel">Start exploring →</a>
-        </div>
-        <figure class="hero-photo">
-          <img src={`${base}photos/chloe/IMG_3652.webp`} alt="Chloe smiling, sitting in golden autumn light beside a meadow." width="1200" height="1800" fetchpriority="high" />
-        </figure>
-      </section>
+    <section class="why" id="why">
+      <p class="kicker">Why I travel</p>
+      <p class="lead">Travel has given me two things: the rush of somewhere new, and a kind of calm I didn’t know I needed.</p>
+      <p>I spent five months living in Leiden and spent my weekends exploring Europe. This is where I share the places that changed me, so you can find your own.</p>
+    </section>
 
-      <section class="why" id="why">
-        <p class="kicker">Why I travel</p>
-        <p class="lead">Travel has given me two things: the rush of somewhere new, and a kind of calm I didn’t know I needed.</p>
-        <p>I spent five months living in Leiden and spent my weekends exploring Europe. This is where I share the places that changed me, so you can find your own.</p>
-      </section>
+    <FeelingGrid />
+    <AtlasList />
 
-      <FeelingGrid />
-      <AtlasList />
+    <section class="mission">
+      <p class="kicker">Why this exists</p>
+      <p class="mission-line">Travel should broaden your perspective, spark your curiosity, and embrace the way you love to explore.</p>
+    </section>
+  </main>
 
-      <section class="mission">
-        <p class="kicker">Why this exists</p>
-        <p class="mission-line">Travel should broaden your perspective, spark your curiosity, and embrace the way you love to explore.</p>
-      </section>
-    </main>
-
-    <footer class="foot"><span>Chloe’s Adventure Guide</span><a href="#top">Back to top ↑</a></footer>
-  </div>
+  <SiteFooter />
 </BaseLayout>
 
 <style>
-  /* Design tokens and shared type for the calm editorial homepage; child
-     components inherit the custom properties through the DOM. */
-  .home { --bg:#FBF8F3; --cream:#F4EEE4; --ink:#1F2A26; --body:#3C4742; --muted:#6B736D; --line:rgba(31,42,38,.14); --rust:#B5502F; background:var(--bg); color:var(--ink); font-family:Inter,system-ui,-apple-system,sans-serif; }
-  .home :global(h1), .home :global(h2), .home :global(h3), .home :global(.serif) { font-family:Fraunces,Georgia,serif; font-weight:350; letter-spacing:-.02em; }
-  .home :global(.kicker) { margin:0 0 18px; font-size:.72rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--rust); }
-  .home :global(.text-link) { display:inline-block; font-size:.9rem; font-weight:600; border-bottom:1px solid currentColor; padding-bottom:3px; }
-  .home :global(.text-link:hover) { color:var(--rust); }
-
-  .top { display:flex; justify-content:space-between; align-items:center; padding:28px 6vw; }
-  .brand { font-family:Fraunces,Georgia,serif; font-size:1.15rem; }
-  .top nav { display:flex; gap:28px; font-size:.9rem; color:var(--muted); }
-  .top nav a:hover { color:var(--ink); }
-
-  .hero { display:grid; grid-template-columns:1fr 1fr; gap:6vw; align-items:center; padding:24px 6vw 110px; }
+  .hero { display:grid; grid-template-columns:1fr 1fr; gap:6vw; align-items:center; padding:48px var(--gutter) 110px; }
   .hero h1 { font-size:clamp(3.4rem,7vw,6.6rem); line-height:.95; margin:0 0 28px; }
   .tagline { font-size:1.25rem; line-height:1.55; max-width:30ch; color:var(--body); margin:0 0 34px; }
-  .hero-photo { margin:0; height:min(82vh,780px); border-radius:4px; overflow:hidden; }
+  .hero-photo { margin:0; height:min(80vh,760px); border-radius:4px; overflow:hidden; }
   .hero-photo img { object-position:50% 62%; }
 
-  .why { max-width:720px; margin:0 auto; padding:90px 6vw; text-align:center; border-top:1px solid var(--line); }
-  .lead { font-family:Fraunces,Georgia,serif; font-style:italic; font-weight:350; font-size:clamp(1.7rem,3vw,2.4rem); line-height:1.3; margin:0 0 26px; }
+  .why { max-width:720px; margin:0 auto; padding:90px var(--gutter); text-align:center; border-top:1px solid var(--line); }
+  .lead { font-family:var(--serif); font-style:italic; font-weight:350; font-size:clamp(1.7rem,3vw,2.4rem); line-height:1.3; margin:0 0 26px; }
   .why p:last-child { color:var(--muted); font-size:1.08rem; line-height:1.7; margin:0; }
 
-  .mission { padding:110px 6vw; background:var(--cream); text-align:center; }
-  .mission-line { max-width:22ch; margin:0 auto; font-family:Fraunces,Georgia,serif; font-weight:350; font-size:clamp(1.9rem,3.6vw,3.2rem); line-height:1.2; letter-spacing:-.02em; }
-
-  .foot { display:flex; justify-content:space-between; gap:20px; padding:40px 6vw; border-top:1px solid var(--line); font-size:.85rem; color:var(--muted); }
-  .foot a:hover { color:var(--ink); }
+  .mission { padding:110px var(--gutter); background:var(--cream); text-align:center; }
+  .mission-line { max-width:22ch; margin:0 auto; font-family:var(--serif); font-weight:350; font-size:clamp(1.9rem,3.6vw,3.2rem); line-height:1.2; letter-spacing:-.02em; }
 
   @media (max-width:900px) {
-    .top nav { display:none; }
     .hero { grid-template-columns:1fr; padding-bottom:80px; }
     .hero-photo { height:70vh; }
-    .why { padding:70px 6vw; }
-    .mission { padding:80px 6vw; }
+    .why { padding:70px var(--gutter); }
+    .mission { padding:80px var(--gutter); }
   }
 </style>

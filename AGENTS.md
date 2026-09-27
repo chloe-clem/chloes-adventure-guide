@@ -103,7 +103,7 @@ Start with how you want to feel (feeling collections)
 
 The guide (searchable list of every destination)
 
-Destination and feeling pages still use the older dark design and are due to be restyled to match.
+Destination and feeling pages share the same calm design system: global tokens and type in src/styles/global.css, a shared sticky SiteHeader and SiteFooter, and component-scoped styles for everything else.
 
 ---
 

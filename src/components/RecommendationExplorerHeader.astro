@@ -11,10 +11,10 @@ const { destinationName, recommendations } = Astro.props;
 const availableInterests = getAvailableInterests(recommendations);
 ---
 
-<div class="shared-explorer shared-explorer-sticky">
-  <div class="wrap shared-explorer-inner">
-    <div class="shared-explorer-heading">
-      <h2>Explore {destinationName} Your Way</h2>
+<div class="filter-bar">
+  <div class="inner">
+    <div>
+      <h2>Explore {destinationName} your way</h2>
       <p>Choose an interest to see recommendations and map locations.</p>
     </div>
     <div aria-label={`Filter ${destinationName} recommendations and map`} class="shared-filters">
@@ -26,3 +26,21 @@ const availableInterests = getAvailableInterests(recommendations);
     <p aria-live="polite" class="filter-status" id="filterStatus">Showing every recommendation and map location.</p>
   </div>
 </div>
+
+<style>
+  .filter-bar { position:sticky; top:var(--header-h); z-index:40; padding:16px var(--gutter); background:rgba(251,248,243,.94); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid var(--line); }
+  .inner { display:grid; grid-template-columns:minmax(260px,.7fr) 1.3fr; gap:12px 28px; align-items:center; }
+  h2 { margin:0; font-size:1.55rem; line-height:1.1; }
+  .inner > div > p { margin:4px 0 0; font-size:.85rem; color:var(--muted); }
+  .shared-filters { display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-end; }
+  .shared-filter { padding:8px 15px; font-size:.86rem; background:transparent; border:1px solid var(--line); border-radius:999px; cursor:pointer; transition:border-color .2s, background .2s, color .2s; }
+  .shared-filter:hover { border-color:var(--ink); }
+  .shared-filter.active { background:var(--ink); border-color:var(--ink); color:var(--bg); }
+  .filter-status { grid-column:1 / -1; margin:0; font-size:.74rem; color:var(--muted); text-align:right; }
+  @media (max-width:800px) {
+    .inner { grid-template-columns:1fr; }
+    .shared-filters { justify-content:flex-start; flex-wrap:nowrap; overflow-x:auto; padding-bottom:4px; }
+    .shared-filter { white-space:nowrap; }
+    .filter-status { text-align:left; }
+  }
+</style>

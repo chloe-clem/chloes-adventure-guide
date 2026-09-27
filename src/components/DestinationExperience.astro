@@ -1,5 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
+import SiteHeader from './SiteHeader.astro';
+import SiteFooter from './SiteFooter.astro';
 import EditorialTake from './EditorialTake.astro';
 import RecommendationCard from './RecommendationCard.astro';
 import RecommendationExplorerHeader from './RecommendationExplorerHeader.astro';
@@ -26,32 +28,32 @@ const mapCenter: [number, number] = [data.longitude, data.latitude];
 const recommendationPayload = JSON.stringify(data.recommendations).replaceAll('<', '\\u003c');
 ---
 
-<a class="destination-back" href={`${base}#atlas-list`} id="destinationBack" data-base={base}>← Back to atlas</a>
-
-<nav class="nav">
-  <a class="brand" href={base}>Chloe's Adventure Guide</a>
-  <div class="navlinks">
-    <a href={`${base}#feel`}>Feelings</a>
-    <a href="#take">Chloe's Take</a>
-    {hasRecommendations && <a href="#map">Map</a>}
-    {hasRecommendations && <a href="#recommendations">Recommendations</a>}
-    {hasStories && <a href="#stories">Stories</a>}
-  </div>
-</nav>
-
-<header class:list={['city-hero', !heroImage && 'no-photo']}>
-  {heroImage && <img alt={data.heroImageAlt} src={assetUrl(heroImage)} />}
-  <div class="wrap city-head fade">
-    <div class="eyebrow">{data.country}{visitLabel && ` · ${visitLabel}`}</div>
-    <h1>{data.name}</h1>
-    <p>{data.note}</p>
-    {data.characteristics.length > 0 && (
-      <div class="city-meta">{data.characteristics.map(characteristic => <span>{characteristic}</span>)}</div>
-    )}
-  </div>
-</header>
+<SiteHeader />
 
 <main>
+  <section class:list={['hero', !heroImage && 'no-photo']}>
+    <div class="hero-copy">
+      <a class="back" href={`${base}#atlas-list`} id="destinationBack" data-base={base}>← All destinations</a>
+      <p class="kicker">{data.country}{visitLabel && ` · ${visitLabel}`}</p>
+      <h1>{data.name}</h1>
+      <p class="note">{data.note}</p>
+      {data.characteristics.length > 0 && (
+        <ul class="chips">{data.characteristics.map(characteristic => <li>{characteristic}</li>)}</ul>
+      )}
+      {(hasRecommendations || hasStories) && (
+        <nav class="jump" aria-label="On this page">
+          <a href="#take">Chloe’s take</a>
+          {hasRecommendations && <a href="#recommendations">Recommendations</a>}
+          {hasRecommendations && <a href="#map">Map</a>}
+          {hasStories && <a href="#stories">Stories</a>}
+        </nav>
+      )}
+    </div>
+    {heroImage && (
+      <figure class="hero-photo"><img alt={data.heroImageAlt} src={assetUrl(heroImage)} fetchpriority="high" /></figure>
+    )}
+  </section>
+
   <EditorialTake
     label="Chloe's take"
     heading={data.storyHeading}
@@ -63,53 +65,50 @@ const recommendationPayload = JSON.stringify(data.recommendations).replaceAll('<
   </EditorialTake>
 
   {hasRecommendations && (
-    <section class="recommendation-explorer" id="recommendations">
+    <section class="explorer" id="recommendations">
       <RecommendationExplorerHeader destinationName={data.name} recommendations={data.recommendations} />
-      <section class="section recommendations" id="recommendationCards">
-        <div class="wrap">
-          <div class="eyebrow rust">Recommendations</div>
-          <div class="rec-heading"><h2 class="fade">{data.recommendationsHeading}</h2></div>
-          <div class="place-grid">
-            {data.recommendations.map(recommendation => <RecommendationCard base={base} recommendation={recommendation} />)}
-          </div>
-        </div>
-      </section>
 
-      <section class="section map-section" id="map">
-        <div class="wrap map-layout">
-          <div class="map-copy fade">
-            <div class="eyebrow rust">Every place, on one map</div>
-            <h2>Browse my handpicked recommendations.</h2>
-            <p>Verified recommendations are pinned on the map, so you can see how the city fits together. Explore cafés, museums, hidden gems, and favorite spots in context, not just as a list.</p>
+      <div class="recs">
+        <p class="kicker">Recommendations</p>
+        <h2 class="fade">{data.recommendationsHeading}</h2>
+        <div class="place-grid">
+          {data.recommendations.map(recommendation => <RecommendationCard base={base} recommendation={recommendation} />)}
+        </div>
+      </div>
+
+      <section class="map-section" id="map">
+        <div class="map-copy fade">
+          <p class="kicker">Every place, on one map</p>
+          <h2>Browse my handpicked recommendations.</h2>
+          <p>Verified recommendations are pinned on the map, so you can see how the city fits together. Explore cafés, museums, hidden gems, and favorite spots in context, not just as a list.</p>
+        </div>
+        <div
+          aria-label={`Interactive map of ${data.name} recommendations`}
+          class="city-map fade"
+          data-map-style="https://tiles.openfreemap.org/styles/positron"
+          data-map-center={mapCenter.join(',')}
+          data-map-zoom="14.1"
+          data-map-selection-zoom="15.6"
+          data-map-min-zoom="11"
+          data-map-max-zoom="18"
+          id="cityMap"
+        >
+          <div class="map-canvas" id="mapCanvas"></div>
+          <div class="map-setup" id="mapSetup" hidden>
+            <p class="kicker">Map locations coming soon</p>
+            <h3>Verified pins are on the way.</h3>
+            <p>Recommendations will appear here after their exact coordinates are confirmed.</p>
           </div>
-          <div
-            aria-label={`Interactive map of ${data.name} recommendations`}
-            class="city-map fade"
-            data-map-style="https://tiles.openfreemap.org/styles/positron"
-            data-map-center={mapCenter.join(',')}
-            data-map-zoom="14.1"
-            data-map-selection-zoom="15.6"
-            data-map-min-zoom="11"
-            data-map-max-zoom="18"
-            id="cityMap"
-          >
-            <div class="map-canvas" id="mapCanvas"></div>
-            <div class="map-setup" id="mapSetup" hidden>
-              <div class="eyebrow rust">Map locations coming soon</div>
-              <h3>Verified pins are on the way.</h3>
-              <p>Recommendations will appear here after their exact coordinates are confirmed.</p>
-            </div>
-            <div class="map-card is-cleared" id="mapCard">
-              <img alt="" />
-              <div>
-                <span>Selected place</span>
-                <h3></h3>
-                <p></p>
-                <div class="map-card-actions">
-                  <button type="button">View recommendation</button>
-                  <a data-map-link="google" href="#" rel="noopener noreferrer" target="_blank">Open in Google Maps</a>
-                  <a data-map-link="apple" href="#" rel="noopener noreferrer" target="_blank">Open in Apple Maps</a>
-                </div>
+          <div class="map-card is-cleared" id="mapCard">
+            <img alt="" />
+            <div>
+              <span>Selected place</span>
+              <h3></h3>
+              <p></p>
+              <div class="map-card-actions">
+                <button type="button">View recommendation</button>
+                <a data-map-link="google" href="#" rel="noopener noreferrer" target="_blank">Open in Google Maps</a>
+                <a data-map-link="apple" href="#" rel="noopener noreferrer" target="_blank">Open in Apple Maps</a>
               </div>
             </div>
           </div>
@@ -119,17 +118,19 @@ const recommendationPayload = JSON.stringify(data.recommendations).replaceAll('<
   )}
 
   {hasStories && (
-    <section class="section wrap" id="stories">
-      <div class="eyebrow rust">Stories left untold</div>
-      <div class="stories-heading">
-        <h2 class="fade">Notes from my time here.</h2>
+    <section class="stories" id="stories">
+      <div class="stories-head">
+        <div>
+          <p class="kicker">Stories left untold</p>
+          <h2 class="fade">Notes from my time here.</h2>
+        </div>
         <p class="fade">Select a photograph to see the story, recommendation, or context behind it.</p>
       </div>
       <div class="story-gallery fade" id="storyGallery">
         {data.stories.map(story => (
           <button data-img={assetUrl(story.image)} data-story={story.story} data-title={story.title}>
-            <img alt={story.imageAlt} src={assetUrl(story.image)} />
-            <span>Story available</span>
+            <img alt={story.imageAlt} src={assetUrl(story.image)} loading="lazy" />
+            <span>{story.title}</span>
           </button>
         ))}
       </div>
@@ -145,6 +146,84 @@ const recommendationPayload = JSON.stringify(data.recommendations).replaceAll('<
   </div>
 )}
 
-<footer class="footer"><div>Chloe's Adventure Guide</div><a href={base}>Back to home ↑</a></footer>
+<SiteFooter />
 
 <script is:inline id="destinationRecommendations" type="application/json" set:html={recommendationPayload}></script>
+
+<style>
+  .hero { display:grid; grid-template-columns:1fr 1fr; gap:6vw; align-items:center; padding:48px var(--gutter) 100px; }
+  .hero.no-photo { grid-template-columns:1fr; padding:72px var(--gutter) 90px; }
+  .no-photo .hero-copy { max-width:860px; }
+  .back { display:inline-block; margin-bottom:32px; font-size:.85rem; font-weight:600; color:var(--muted); }
+  .back:hover { color:var(--rust); }
+  h1 { margin:0 0 24px; font-size:clamp(3.6rem,8vw,7.2rem); line-height:.92; }
+  .note { max-width:32ch; margin:0 0 28px; font-size:1.25rem; line-height:1.55; color:var(--body); }
+  .chips { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 30px; padding:0; list-style:none; }
+  .chips li { padding:6px 12px; font-size:.82rem; color:var(--body); border:1px solid var(--line); border-radius:999px; }
+  .jump { display:flex; flex-wrap:wrap; gap:10px 24px; padding-top:22px; font-size:.85rem; font-weight:600; border-top:1px solid var(--line); }
+  .jump a:hover { color:var(--rust); }
+  .hero-photo { margin:0; height:min(80vh,760px); border-radius:4px; overflow:hidden; }
+
+  .explorer { background:var(--cream); border-top:1px solid var(--line); }
+  .recs { padding:80px var(--gutter) 100px; }
+  .recs h2, .map-copy h2, .stories h2 { margin:0 0 44px; font-size:clamp(2.4rem,4.5vw,4rem); line-height:1; }
+  .place-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+
+  .map-section { display:grid; grid-template-columns:.7fr 1.3fr; gap:5vw; align-items:center; padding:100px var(--gutter); background:var(--bg); border-top:1px solid var(--line); }
+  .map-copy h2 { margin-bottom:20px; }
+  .map-copy > p:last-child { margin:0; color:var(--body); line-height:1.7; }
+  .city-map { position:relative; min-height:560px; overflow:hidden; background:var(--cream); border:1px solid var(--line); border-radius:6px; }
+  .map-setup { position:absolute; inset:0; z-index:2; display:grid; place-content:center; padding:48px; text-align:center; background:var(--cream); }
+  .map-setup h3 { margin:0 0 10px; font-size:2rem; }
+  .map-setup p:last-child { margin:0; color:var(--muted); }
+  .map-card { position:absolute; z-index:4; left:18px; right:18px; bottom:18px; display:grid; grid-template-columns:110px 1fr; overflow:hidden; background:var(--paper); border:1px solid var(--line); border-radius:6px; box-shadow:0 16px 36px rgba(31,42,38,.14); }
+  .map-card.is-cleared { display:none; }
+  .map-card img { min-height:120px; }
+  .map-card.without-image { grid-template-columns:1fr; }
+  .map-card.without-image img { display:none; }
+  .map-card > div { padding:14px 16px; }
+  .map-card span { font-size:.64rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--rust); }
+  .map-card h3 { margin:2px 0; font-size:1.3rem; }
+  .map-card p { margin:0; font-size:.85rem; line-height:1.5; color:var(--muted); }
+  .map-card-actions { display:flex; flex-wrap:wrap; gap:8px 16px; margin-top:10px; }
+  .map-card-actions button, .map-card-actions a { padding:0; font-size:.78rem; font-weight:600; background:none; border:0; border-bottom:1px solid currentColor; cursor:pointer; }
+  .map-card-actions button:hover, .map-card-actions a:hover { color:var(--rust); }
+
+  .stories { padding:100px var(--gutter); border-top:1px solid var(--line); }
+  .stories-head { display:grid; grid-template-columns:1fr .6fr; gap:5vw; align-items:end; margin-bottom:8px; }
+  .stories-head > p { margin:0 0 44px; color:var(--muted); }
+  .story-gallery { columns:3 280px; column-gap:14px; }
+  .story-gallery button { position:relative; display:block; width:100%; margin:0 0 14px; padding:0; overflow:hidden; background:none; border:0; border-radius:4px; cursor:pointer; break-inside:avoid; }
+  .story-gallery img { height:auto; transition:transform .6s ease; }
+  .story-gallery button:hover img { transform:scale(1.03); }
+  .story-gallery button::after { content:""; position:absolute; inset:55% 0 0; background:linear-gradient(transparent, rgba(20,26,24,.6)); }
+  .story-gallery span { position:absolute; z-index:1; left:16px; bottom:14px; font-family:var(--serif); font-size:1.1rem; color:#fff; }
+
+  .story-modal { position:fixed; z-index:200; inset:0; display:grid; grid-template-columns:1.35fr .65fr; gap:45px; align-items:center; padding:6vw; background:rgba(20,26,24,.94); color:#fff; }
+  .story-modal img { max-height:82vh; object-fit:contain; }
+  .story-modal span { font-size:.66rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:#E8B39A; }
+  .story-modal h2 { margin:10px 0 18px; font-size:clamp(2.2rem,4.5vw,4rem); line-height:1; }
+  .story-modal p { font-size:1.08rem; line-height:1.7; color:#D9DFDB; }
+  .modal-close { position:absolute; top:18px; right:26px; font-size:2.4rem; color:#fff; background:none; border:0; cursor:pointer; }
+
+  @media (max-width:1000px) {
+    .place-grid { grid-template-columns:repeat(2,1fr); }
+    .map-section { grid-template-columns:1fr; }
+  }
+  @media (max-width:900px) {
+    .hero { grid-template-columns:1fr; padding-bottom:70px; }
+    .hero-photo { height:62vh; }
+    .stories-head { grid-template-columns:1fr; gap:0; }
+    .story-modal { grid-template-columns:1fr; padding:70px 6vw 30px; overflow:auto; }
+    .story-modal img { max-height:48vh; }
+  }
+  @media (max-width:640px) {
+    .place-grid { grid-template-columns:1fr; }
+    .city-map { min-height:460px; }
+    .map-card { grid-template-columns:82px 1fr; left:10px; right:10px; bottom:10px; }
+    .map-card p { display:none; }
+    .story-gallery { columns:2 140px; }
+    .recs, .map-section, .stories { padding-top:70px; padding-bottom:70px; }
+  }
+  @media (prefers-reduced-motion:reduce) { .story-gallery img { transition:none; } }
+</style>

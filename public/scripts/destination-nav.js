@@ -1,3 +1,5 @@
+// Point the destination page's back link at wherever the visitor came from:
+// the feeling collection they were browsing, or the full destination list.
 (function(){
   const back=document.getElementById('destinationBack');
   if(!back)return;
@@ -7,10 +9,10 @@
   const base=back.dataset.base || '/';
   if(from==='collection' && feeling){
     back.href=`${base}feelings/${encodeURIComponent(feeling)}/`;
-    back.textContent='← Back to collection';
+    back.textContent=`← Back to ${feeling.charAt(0).toUpperCase()}${feeling.slice(1)}`;
   }else if(from==='atlas'){
     back.href=`${base}#atlas-list`;
-    back.textContent='← Back to complete atlas';
+    back.textContent='← All destinations';
   }else if(document.referrer){
     try{
       const ref=new URL(document.referrer);
@@ -20,27 +22,4 @@
       }
     }catch(e){}
   }
-})();
-
-
-// Keep the destination back control out of the way; reveal it briefly when scrolling upward.
-(function(){
-  const back=document.getElementById('destinationBack');
-  if(!back)return;
-  let lastY=window.scrollY;
-  let hideTimer;
-  const showBriefly=()=>{
-    back.classList.add('is-visible');
-    clearTimeout(hideTimer);
-    hideTimer=setTimeout(()=>back.classList.remove('is-visible'),1600);
-  };
-  if(window.scrollY<120) showBriefly();
-  addEventListener('scroll',()=>{
-    const y=window.scrollY;
-    if(y<100 || y<lastY-8) showBriefly();
-    else if(y>lastY+8) back.classList.remove('is-visible');
-    lastY=y;
-  },{passive:true});
-  back.addEventListener('focus',()=>back.classList.add('is-visible'));
-  back.addEventListener('blur',()=>{hideTimer=setTimeout(()=>back.classList.remove('is-visible'),500)});
 })();
