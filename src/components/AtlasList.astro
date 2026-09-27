@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { categories } from '../data/categories';
 // getCollection() doesn't guarantee any particular order (it reflects filesystem
 // read order, not insertion order), so sort explicitly for a stable, browsable list.
 const destinations = (await getCollection('destinations')).sort((a, b) =>
@@ -21,7 +22,7 @@ const base = import.meta.env.BASE_URL;
 
   <div class="controls">
     <label class="search">Search
-      <input id="destinationSearch" type="search" placeholder="Try Leiden, Switzerland, mountains…" />
+      <input id="destinationSearch" type="search" placeholder="Try Leiden, Switzerland, beach…" />
     </label>
     <label>Continent
       <select id="continentFilter"><option value="all">All continents</option>{continents.map(v => <option value={v}>{v}</option>)}</select>
@@ -35,7 +36,7 @@ const base = import.meta.env.BASE_URL;
   <p class="count" id="resultCount" aria-live="polite"></p>
   <div class="rows" id="destinationList">
     {destinations.map(d => (
-      <a class="row" href={`${base}destinations/${d.slug}/?from=atlas`} data-search={`${d.data.name} ${d.data.country} ${d.data.continent} ${d.data.note} ${d.data.feelings.join(' ')}`} data-continent={d.data.continent} data-country={d.data.country}>
+      <a class="row" href={`${base}destinations/${d.slug}/?from=atlas`} data-search={`${d.data.name} ${d.data.country} ${d.data.continent} ${d.data.note} ${d.data.categories.map(slug => categories.find(c => c.slug === slug)?.title).join(' ')}`} data-continent={d.data.continent} data-country={d.data.country}>
         <span>{d.data.country}</span><strong>{d.data.name}</strong><em>{d.data.note}</em><i aria-hidden="true">→</i>
       </a>
     ))}

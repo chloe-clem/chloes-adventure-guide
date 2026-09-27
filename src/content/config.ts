@@ -1,5 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { interestTaxonomy } from '../lib/recommendations';
+import { categorySlugs } from '../data/categories';
 
 // A recommendation is a single place (café, museum, viewpoint...) Chloe
 // personally recommends within a destination. Coordinates are optional
@@ -39,11 +40,11 @@ const destinations = defineCollection({
     latitude: z.number(),
     longitude: z.number(),
     visitLabel: z.string().default(''),
-    // One of the slugs in src/data/feelings.ts (immersed, wild, inspired, energized, relaxed).
-    feelings: z.array(z.string()),
-    // Short one-line description shown on feeling-collection cards and in atlas search results.
+    // Slugs from src/data/categories.ts: big-city, historical, nature, small-town, beach.
+    categories: z.array(z.enum(categorySlugs)),
+    // Short one-line description shown on category pages and in the destination search list.
     note: z.string(),
-    // Used as the feeling-collection card background, and as the page hero photo if heroImage is unset.
+    // Used as the destination's hero photo when heroImage is unset.
     featuredImage: z.string().default(''),
     heroImage: z.string().default(''),
     heroImageAlt: z.string().default(''),

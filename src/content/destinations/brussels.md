@@ -4,9 +4,9 @@ country: Belgium
 continent: Europe
 latitude: 50.8503
 longitude: 4.3517
-feelings:
-  - energized
-  - inspired
+categories:
+  - big-city
+  - historical
 note: A pleasantly surprising city of waffles, parks, and cathedral interiors.
 visitLabel: Study abroad
 ---

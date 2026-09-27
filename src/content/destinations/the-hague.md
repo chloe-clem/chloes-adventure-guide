@@ -4,10 +4,9 @@ country: Netherlands
 continent: Europe
 latitude: 52.0705
 longitude: 4.3007
-feelings:
-  - immersed
-  - energized
-  - inspired
+categories:
+  - big-city
+  - beach
 note: A modern city balanced by beaches, parks, and forest.
 visitLabel: Study abroad
 ---

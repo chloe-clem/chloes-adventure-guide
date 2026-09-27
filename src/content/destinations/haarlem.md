@@ -4,9 +4,9 @@ country: Netherlands
 continent: Europe
 latitude: 52.3874
 longitude: 4.6462
-feelings:
-  - immersed
-  - inspired
+categories:
+  - small-town
+  - historical
 note: A surprisingly quiet and relaxing city near Amsterdam.
 visitLabel: Study abroad
 ---

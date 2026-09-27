@@ -4,10 +4,9 @@ country: Netherlands
 continent: Europe
 latitude: 52.3676
 longitude: 4.9041
-feelings:
-  - energized
-  - inspired
-  - relaxed
+categories:
+  - big-city
+  - historical
 note: A busy but charming city full of museums, food, canals, and easy movement.
 visitLabel: Study abroad
 ---

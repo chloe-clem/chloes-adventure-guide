@@ -7,7 +7,7 @@ Astro foundation configured for GitHub Pages at:
 ## Included
 - Calm editorial homepage built around a photo of Chloe
 - 18 destinations, each a single Markdown file in `src/content/destinations/`
-- Five feeling collections assigned from Chloe's descriptions
+- Five destination categories: Big City, Historical, Nature, Small Town, Beach
 - Source-derived story text on every destination page
 - Leiden's full destination experience (recommendations, map, photo gallery)
 - GitHub Actions deployment workflow

@@ -4,10 +4,8 @@ country: Germany
 continent: Europe
 latitude: 48.1351
 longitude: 11.582
-feelings:
-  - energized
-  - relaxed
-  - inspired
+categories:
+  - big-city
 note: Parks, winter canals, river surfers, and a thrilling New Year’s Eve.
 visitLabel: New Year’s visit
 ---

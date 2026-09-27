@@ -4,10 +4,9 @@ country: France
 continent: Europe
 latitude: 48.8566
 longitude: 2.3522
-feelings:
-  - energized
-  - inspired
-  - relaxed
+categories:
+  - big-city
+  - historical
 note: Nighttime magic, huge museums, underground history, and unforgettable food finds.
 visitLabel: Study abroad
 ---

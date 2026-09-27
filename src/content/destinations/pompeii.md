@@ -4,9 +4,8 @@ country: Italy
 continent: Europe
 latitude: 40.7462
 longitude: 14.4989
-feelings:
-  - inspired
-  - energized
+categories:
+  - historical
 note: An astonishingly advanced ancient city best explored slowly and with a guide.
 visitLabel: Study abroad
 ---

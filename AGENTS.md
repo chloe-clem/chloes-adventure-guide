@@ -97,19 +97,19 @@ Why I travel
 
 ↓
 
-Start with how you want to feel (feeling collections)
+What kind of trip are you after? (five destination categories: Big City, Historical, Nature, Small Town, Beach)
 
 ↓
 
 The guide (searchable list of every destination)
 
-Destination and feeling pages share the same calm design system: global tokens and type in src/styles/global.css, a shared sticky SiteHeader and SiteFooter, and component-scoped styles for everything else.
+Destination and category pages share the same calm design system: global tokens and type in src/styles/global.css, a shared sticky SiteHeader and SiteFooter, and component-scoped styles for everything else.
 
 ---
 
 # Navigation Rules
 
-Destination and feeling pages link back to the homepage's #feel and #atlas-list sections.
+Destination and category pages link back to the homepage's #explore and #atlas-list sections. Old /feelings/* URLs redirect to the matching /explore/* category.
 
 Destination pages include subtle navigation.
 

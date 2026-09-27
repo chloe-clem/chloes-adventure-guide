@@ -22,7 +22,7 @@ const hasStories = data.stories.length > 0;
 const visitLabel = data.visitLabel === 'Study abroad' ? '' : data.visitLabel;
 
 // Every destination has its own coordinates already (used for atlas search and
-// feeling-collection filtering), so the map centers there by default even
+// category-page filtering), so the map centers there by default even
 // before any recommendation has verified coordinates of its own.
 const mapCenter: [number, number] = [data.longitude, data.latitude];
 const recommendationPayload = JSON.stringify(data.recommendations).replaceAll('<', '\\u003c');

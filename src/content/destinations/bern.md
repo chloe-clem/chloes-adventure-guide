@@ -4,9 +4,9 @@ country: Switzerland
 continent: Europe
 latitude: 46.948
 longitude: 7.4474
-feelings:
-  - immersed
-  - inspired
+categories:
+  - small-town
+  - nature
 note: An accessible green city of hills and meadows before the Alps.
 visitLabel: Study abroad
 ---

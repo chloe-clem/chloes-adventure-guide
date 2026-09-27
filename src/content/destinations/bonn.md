@@ -4,8 +4,8 @@ country: Germany
 continent: Europe
 latitude: 50.7374
 longitude: 7.0982
-feelings:
-  - inspired
+categories:
+  - historical
 note: An uneasy arrival followed by castles, history, and a calmer neighborhood outside the center.
 visitLabel: Study abroad
 ---

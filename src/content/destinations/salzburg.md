@@ -4,10 +4,10 @@ country: Austria
 continent: Europe
 latitude: 47.8095
 longitude: 13.055
-feelings:
-  - inspired
-  - relaxed
-  - immersed
+categories:
+  - small-town
+  - historical
+  - nature
 note: A pretty, compact city with Christmas markets and easy access to nearby hikes.
 visitLabel: Friend visit
 ---

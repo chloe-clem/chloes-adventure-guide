@@ -1,6 +1,11 @@
 ---
-const base = import.meta.env.BASE_URL;
-const destination = `${base}feelings/immersed/`;
+interface Props {
+  to: string;
+  label: string;
+}
+
+const { to, label } = Astro.props;
+const destination = `${import.meta.env.BASE_URL}${to}`;
 ---
 
 <!doctype html>
@@ -11,10 +16,10 @@ const destination = `${base}feelings/immersed/`;
     <meta http-equiv="refresh" content={`0; url=${destination}`} />
     <meta name="robots" content="noindex" />
     <link rel="canonical" href={new URL(destination, Astro.site)} />
-    <title>Collection moved | Chloe's Adventure Guide</title>
+    <title>Page moved | Chloe's Adventure Guide</title>
     <script is:inline define:vars={{ destination }}>window.location.replace(destination);</script>
   </head>
   <body>
-    <p>This collection has moved to <a href={destination}>Immersed</a>.</p>
+    <p>This page has moved to <a href={destination}>{label}</a>.</p>
   </body>
 </html>

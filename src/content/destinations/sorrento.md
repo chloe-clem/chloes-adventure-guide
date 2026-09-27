@@ -4,10 +4,9 @@ country: Italy
 continent: Europe
 latitude: 40.6263
 longitude: 14.3758
-feelings:
-  - immersed
-  - relaxed
-  - energized
+categories:
+  - beach
+  - small-town
 note: A clean, safe coastal base with lively evening walks and easy access to Pompeii.
 visitLabel: Pompeii trip
 ---

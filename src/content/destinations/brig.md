@@ -4,8 +4,9 @@ country: Switzerland
 continent: Europe
 latitude: 46.3167
 longitude: 7.9833
-feelings:
-  - immersed
+categories:
+  - small-town
+  - nature
 note: A quiet Alpine town discovered by taking the wrong train.
 visitLabel: Study abroad
 ---

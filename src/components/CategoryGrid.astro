@@ -1,0 +1,39 @@
+---
+import { categories } from '../data/categories';
+const base = import.meta.env.BASE_URL;
+const assetUrl = (image: string) => `${base}${image.replace(/^\//, '')}`;
+---
+
+<section class="explore" id="explore">
+  <div class="explore-head">
+    <p class="kicker">Discover destinations that fit the way you want to travel.</p>
+    <h2>What kind of trip are you after?</h2>
+  </div>
+  <div class="grid">
+    {categories.map((category, index) => (
+      <a class="card" href={`${base}explore/${category.slug}/`}>
+        <div class="card-img"><img src={assetUrl(category.image)} alt={category.imageAlt ?? ''} loading="lazy" /></div>
+        <span class="num">0{index + 1}</span>
+        <h3>{category.title}</h3>
+        <p>{category.cardCopy}</p>
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+  .explore { padding:100px var(--gutter); background:var(--cream); }
+  .explore-head { max-width:760px; margin-bottom:56px; }
+  h2 { font-size:clamp(2.4rem,4.5vw,4rem); line-height:1; margin:0; }
+  .grid { display:grid; grid-template-columns:repeat(5,1fr); gap:22px; }
+  .card-img { aspect-ratio:4/5; overflow:hidden; border-radius:3px; margin-bottom:16px; }
+  .card-img img { transition:transform .6s ease; }
+  .card:hover .card-img img { transform:scale(1.04); }
+  .card:focus-visible { outline:2px solid var(--rust); outline-offset:6px; }
+  .num { font-size:.72rem; letter-spacing:.14em; color:var(--muted); }
+  h3 { font-size:1.6rem; margin:6px 0 8px; }
+  p:not(.kicker) { font-size:.88rem; line-height:1.55; color:var(--muted); margin:0; }
+  @media (prefers-reduced-motion:reduce) { .card-img img { transition:none; } }
+  @media (max-width:1000px) { .grid { grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:520px) { .explore { padding:70px var(--gutter); } .grid { grid-template-columns:1fr; } }
+</style>

@@ -4,10 +4,9 @@ country: Belgium
 continent: Europe
 latitude: 50.7309
 longitude: 4.4857
-feelings:
-  - immersed
-  - relaxed
-  - wild
+categories:
+  - small-town
+  - nature
 note: A welcoming hidden gem of forest trails, ponds, horses, and château grounds.
 visitLabel: Study abroad
 ---

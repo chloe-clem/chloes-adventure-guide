@@ -4,10 +4,8 @@ country: Switzerland
 continent: Europe
 latitude: 46.4947
 longitude: 7.6733
-feelings:
-  - wild
-  - immersed
-  - inspired
+categories:
+  - nature
 note: Snow, green meadows, mountains, and a favorite canoeing memory.
 visitLabel: September trip
 ---

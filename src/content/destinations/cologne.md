@@ -4,9 +4,9 @@ country: Germany
 continent: Europe
 latitude: 50.9375
 longitude: 6.9603
-feelings:
-  - inspired
-  - immersed
+categories:
+  - big-city
+  - historical
 note: A monumental cathedral, chocolate, river walks, and a more distant city mood.
 visitLabel: Short visit
 ---

@@ -13,9 +13,8 @@ country: Italy
 continent: Europe
 latitude: 40.7462
 longitude: 14.4989
-feelings:
-  - inspired
-  - energized
+categories:
+  - historical
 note: An astonishingly advanced ancient city best explored slowly and with a guide.
 visitLabel: Study abroad
 ---
@@ -27,8 +26,8 @@ I highly recommend a guided tour because the guides explain how the city worked 
 
 That's it — a real, complete page. To add a new destination, copy this shape, change the details, and write your own paragraphs below the `---`.
 
-- **`feelings`** must be slugs from `src/data/feelings.ts` (currently `immersed`, `wild`, `inspired`, `energized`, `relaxed`).
-- **`note`** is the one-line description shown on feeling-collection cards and in the atlas search list.
+- **`categories`** must be slugs from `src/data/categories.ts`: `big-city`, `historical`, `nature`, `small-town`, `beach`. A destination can have more than one, and appears on each matching category page. The build fails with a clear error if one is misspelled.
+- **`note`** is the one-line description shown on category pages and in the homepage destination list.
 - **`visitLabel`** is optional — a short tag like "Study abroad" or "Day trip" shown next to the country name. Leave it out if it doesn't add anything.
 - The text below the `---` is the destination's story. Write as many paragraphs as you want, separated by a blank line.
 
@@ -40,7 +39,7 @@ Drop images in `public/photos/<slug>/` (e.g. `public/photos/pompeii/`), then ref
 featuredImage: photos/pompeii/img_1234.jpg
 ```
 
-`featuredImage` is used both as the feeling-collection card background and, if you don't set a separate `heroImage`, as the destination page's own hero photo. If neither is set, the page uses a plain dark gradient instead of a photo — that's a normal, finished-looking state, not a placeholder.
+`featuredImage` becomes the destination page's hero photo if you don't set a separate `heroImage`. If neither is set, the page uses a text-only hero instead. That's a normal, finished-looking state, not a placeholder.
 
 ## Everything else is optional, and only shows up if you fill it in
 

@@ -4,10 +4,8 @@ country: Germany
 continent: Europe
 latitude: 47.6302
 longitude: 13.0001
-feelings:
-  - wild
-  - immersed
-  - inspired
+categories:
+  - nature
 note: Dreamlike national-park hikes and some of the most beautiful views of the trip.
 visitLabel: Study abroad
 ---

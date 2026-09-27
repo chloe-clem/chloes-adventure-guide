@@ -4,10 +4,9 @@ country: France
 continent: Europe
 latitude: 43.2677
 longitude: 6.6407
-feelings:
-  - immersed
-  - energized
-  - relaxed
+categories:
+  - beach
+  - small-town
 note: A lively but relaxing coastal town of yachts, beaches, and sunset swims.
 visitLabel: Study abroad
 ---
