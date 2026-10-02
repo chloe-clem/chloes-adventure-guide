@@ -39,6 +39,9 @@ recommendations:
     interests:
       - nature
     shortDescription: A small park across from Leiden University’s law building where you will often see people walking their dogs, students meeting up, and locals enjoying the sunshine.
+    address: Kruitschip, 2311 RS Leiden, Netherlands
+    latitude: 52.1555228
+    longitude: 4.4921885
     image: photos/leiden/IMG_9243.jpeg
     imageAlt: Sunlight filtering through the trees in Van der Werffpark.
   - id: burcht-van-leiden
@@ -74,6 +77,9 @@ recommendations:
       - shopping
     shortDescription: Leiden’s Wednesday and Saturday market fills Botermarkt with local vendors selling fresh bread, baked goods, cheese, flowers, stroopwafels, and even souvenirs. During the winter, the area also hosts Christmas markets and a small ice skating rink.
     whyIRecommendIt: Saturday has more vendors, but Wednesday is also worth visiting if you are in town.
+    address: Botermarkt, 2311 WG Leiden, Netherlands
+    latitude: 52.1572277
+    longitude: 4.4925886
     image: photos/leiden/img_0113.jpg
     imageAlt: Fresh flowers for sale at Leiden's Botermarkt market.
   - id: roos
@@ -148,6 +154,9 @@ recommendations:
     interests:
       - nature
     shortDescription: One of my favorite places to spread out a blanket, relax by the canal, and enjoy a warm sunny afternoon.
+    address: Tweelingstraat 89, 2312 LX Leiden, Netherlands
+    latitude: 52.163701
+    longitude: 4.497832
     image: photos/leiden/IMG_8139.jpeg
     imageAlt: Bridge crossing the canal beside Huigpark in Leiden.
   - id: de-twee-spieghels

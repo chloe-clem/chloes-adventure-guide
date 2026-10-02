@@ -29,3 +29,5 @@ The interactive map uses MapLibre GL JS with OpenFreeMap and does not require an
 
 ## Adding content
 See [docs/adding-a-destination.md](docs/adding-a-destination.md) for how to add a destination, its photos, and its recommendations.
+
+Keep a running list of places you want to add later in [docs/recommendation-backlog.md](docs/recommendation-backlog.md).
