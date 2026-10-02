@@ -81,7 +81,7 @@ recommendations:
     interests:
       - cafes
       - food
-    shortDescription: This is also a cute café where I've always had great breakfast food and slow morning with friends.
+    shortDescription: This is also a cute café where I've always had great breakfast food and slow mornings with friends.
     address: Botermarkt 12, 2311 EM Leiden, Netherlands
     latitude: 52.1573619
     longitude: 4.4923128
@@ -113,7 +113,7 @@ recommendations:
     interests:
       - hidden-gems
     shortDescription: One of Leiden’s most recognizable landmarks. It's a good starting point before walking into the rest of the city. This is where my orientation for study abroad began, and a common meet up place for many people. 
-    whyIRecommendIt: It is right next to an open part of the canal which makes for a great place to sit and picnic. Just watch out for the seaguls... they will still your food! 
+    whyIRecommendIt: It is right next to an open part of the canal which makes for a great place to sit and picnic. Just watch out for the seaguls... they will steal your food! 
     address: Molenwerf 1, 2312 CH Leiden, Netherlands
     latitude: 52.16451
     longitude: 4.48627
@@ -255,7 +255,7 @@ recommendations:
     name: "'t Pannenkoekenhuysje Oudt Leyden"
     interests:
       - food
-    shortDescription: It is the oldest pancake place in Leiden and has been operating since 1907. It is a great place for dinner with many sweet and savory options!
+    shortDescription: It is the oldest pancake place in Leiden and has been operating since 1907. A great place for dinner with many sweet and savory options! You might have to get one of each :)
     whyIRecommendIt: It even held a Michelin star twice, from 1957 to 1979 and again from 1985 to 1989.
     address: Steenstraat 49, 2312 BV Leiden, Netherlands
     latitude: 52.16216
@@ -267,7 +267,7 @@ recommendations:
     interests:
       - nightlife
       - activities
-    shortDescription: A very small but cozy place to go play some pool and have some drinks.
+    shortDescription: A very small but cozy place to go play some pool and have some drinks as a fun evening activity.
     address: Nieuwstraat 45, 2312 KA Leiden, Netherlands
     latitude: 52.15756
     longitude: 4.493668

@@ -18,10 +18,8 @@ const { recommendation, base } = Astro.props;
   role="button"
   tabindex="0"
 >
-  {recommendation.image
-    ? <img alt={recommendation.imageAlt} src={`${base}${recommendation.image}`} loading="lazy" />
-    : <div aria-hidden="true" class="placeholder"><span>Photo coming soon</span></div>}
-  <div class="copy">
+  {recommendation.image && <img alt={recommendation.imageAlt} src={`${base}${recommendation.image}`} loading="lazy" />}
+  <div class:list={['copy', !recommendation.image && 'no-image']}>
     <div class="top">
       <div>
         <span class="label">{interestLabels[recommendation.interests[0]]}</span>
@@ -46,10 +44,12 @@ const { recommendation, base } = Astro.props;
   .place-card { background:var(--paper); border:1px solid var(--line); border-radius:6px; overflow:hidden; cursor:pointer; transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease, opacity .8s ease; }
   .place-card:hover { transform:translateY(-3px); box-shadow:0 16px 36px rgba(31,42,38,.10); }
   .place-card.selected { border-color:var(--rust); box-shadow:0 0 0 1px var(--rust), 0 16px 36px rgba(31,42,38,.12); }
-  img, .placeholder { height:230px; }
-  .placeholder { display:flex; align-items:flex-end; padding:20px 22px; background:var(--cream); }
-  .placeholder span { font-size:.64rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+  img { height:230px; }
   .copy { padding:22px 22px 24px; }
+  /* No photo isn't a gap waiting to be filled -- some recommendations will
+     never have one, so this is styled as its own complete layout rather
+     than a placeholder implying a photo is "coming soon". */
+  .copy.no-image { padding-top:24px; border-top:3px solid var(--rust); }
   .top { display:flex; justify-content:space-between; gap:12px; }
   .label { display:block; font-size:.66rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--rust); }
   h3 { margin:4px 0 0; font-size:1.45rem; line-height:1.15; }
