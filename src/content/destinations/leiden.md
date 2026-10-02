@@ -161,6 +161,8 @@ recommendations:
     latitude: 52.1580469
     longitude: 4.4932715
     website: https://www.detweespieghels.nl/
+    image: photos/leiden/IMG_1097.jpg
+    imageAlt: The Jazz sign and outdoor seating at De Twee Spieghels in Leiden.
   - id: hema
     name: HEMA
     interests:
@@ -239,6 +241,8 @@ recommendations:
     latitude: 52.1579426
     longitude: 4.4933515
     instagram: "@by.lauritsa"
+    image: photos/leiden/IMG_1096.jpg
+    imageAlt: A handmade crocheted bag by Lauritsa, hanging in the window of Éternité Vintage in Leiden.
   - id: madame-marie
     name: Madame Marie
     interests:
