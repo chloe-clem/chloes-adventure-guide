@@ -256,6 +256,7 @@ recommendations:
     interests:
       - food
     shortDescription: It is the oldest pancake place in Leiden and has been operating since 1907. It is a great place for dinner with many sweet and savory options!
+    whyIRecommendIt: It even held a Michelin star twice, from 1957 to 1979 and again from 1985 to 1989.
     address: Steenstraat 49, 2312 BV Leiden, Netherlands
     latitude: 52.16216
     longitude: 4.484592
