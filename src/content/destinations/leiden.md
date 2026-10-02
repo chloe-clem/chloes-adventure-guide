@@ -81,7 +81,7 @@ recommendations:
     interests:
       - cafes
       - food
-    shortDescription: A reliable café for a relaxed meal or coffee stop.
+    shortDescription: This is also a cute café where I've always had great breakfast food and slow morning with friends.
     address: Botermarkt 12, 2311 EM Leiden, Netherlands
     latitude: 52.1573619
     longitude: 4.4923128
@@ -92,7 +92,7 @@ recommendations:
     name: Restaurant Waag
     interests:
       - food
-    shortDescription: Enjoy a meal inside one of Leiden’s most historic landmark buildings.
+    shortDescription: Here you can enjoy a meal inside one of Leiden’s most historic landmark buildings! I didn't have the chance to go, but its a place I hear recommended constantly.
     address: Aalmarkt 21, 2311 EC Leiden, Netherlands
     latitude: 52.1593318
     longitude: 4.4904674
@@ -101,7 +101,7 @@ recommendations:
     name: Hooglandse Kerk
     interests:
       - hidden-gems
-    shortDescription: One of the city’s most beautiful churches and well worth walking past while exploring the historic center.
+    shortDescription: You can't miss this beautiful church while walking around the center. It definitely stands out as one of the bigger buildings in the small city!
     address: Nieuwstraat 20, 2312 KC Leiden, Netherlands
     latitude: 52.1579707
     longitude: 4.4942105
@@ -112,7 +112,8 @@ recommendations:
     name: Molenmuseum De Valk
     interests:
       - hidden-gems
-    shortDescription: One of Leiden’s most recognizable landmarks and an iconic Dutch windmill in the middle of the city.
+    shortDescription: One of Leiden’s most recognizable landmarks. It's a good starting point before walking into the rest of the city. This is where my orientation for study abroad began, and a common meet up place for many people. 
+    whyIRecommendIt: It is right next to an open part of the canal which makes for a great place to sit and picnic. Just watch out for the seaguls... they will still your food! 
     address: Molenwerf 1, 2312 CH Leiden, Netherlands
     latitude: 52.16451
     longitude: 4.48627
@@ -123,7 +124,7 @@ recommendations:
     name: Speeltuinvereniging De Doorbraak
     interests:
       - activities
-    shortDescription: A wonderful playground with interactive, nature-focused play areas that make it much more than a typical neighborhood park.
+    shortDescription: A wonderful playground with interactive, nature-focused play areas that make it unique from a typical neighborhood park.
     address: Katoenpark 1, 2312 MN Leiden, Netherlands
     latitude: 52.1578879
     longitude: 4.5033957
@@ -134,7 +135,8 @@ recommendations:
       - day-trips
       - nature
       - activities
-    shortDescription: A fall day trip for apple and pear picking.
+    shortDescription: This is the perfect fall day trip for apple and pear picking. I still look back at this as one of my favorite experiences from study abroad! My friends and I made multiple yummy desserts with all of our fresh fruit.
+    whyIRecommendIt: Bring your own bags to collect your fruit as you go. You pay by the kilo. There is also a shop and cafe to check out and take a little break in after.  
     address: Lisserweg 481, 2165 AS Lisserbroek, Netherlands
     latitude: 52.2543013
     longitude: 4.5898861
@@ -242,13 +244,35 @@ recommendations:
     interests:
       - food
       - cafes
-    shortDescription: A beautiful café serving one of the most aesthetically presented Dutch apple pies I found in Leiden.
+    shortDescription: A beautiful café serving one of the most beautiful Dutch apple pies I found in Leiden.
     whyIRecommendIt: Come for the apple pie. It is a classic Dutch treat and almost too pretty to eat.
     address: Kloksteeg 2, 2311 SL Leiden, Netherlands
     latitude: 52.1570835
     longitude: 4.4862667
     image: photos/leiden/img_0078.jpg
     imageAlt: Dutch apple pie and coffee at Madame Marie in Leiden.
+  - id: t-pannenkoekenhuysje-oudt-leyden
+    name: "'t Pannenkoekenhuysje Oudt Leyden"
+    interests:
+      - food
+    shortDescription: It is the oldest pancake place in Leiden and has been operating since 1907. It is a great place for dinner with many sweet and savory options!
+    address: Steenstraat 49, 2312 BV Leiden, Netherlands
+    latitude: 52.16216
+    longitude: 4.484592
+    image: photos/leiden/IMG_8764.jpeg
+    imageAlt: Four ham and cheese Dutch pancakes served on blue-and-white plates at Oudt Leyden.
+  - id: poolcafe-the-church
+    name: Poolcafé The Church
+    interests:
+      - nightlife
+      - activities
+    shortDescription: A very small but cozy place to go play some pool and have some drinks.
+    address: Nieuwstraat 45, 2312 KA Leiden, Netherlands
+    latitude: 52.15756
+    longitude: 4.493668
+    website: https://poolcafethechurch.nl/
+    image: photos/leiden/IMG_9794.jpeg
+    imageAlt: Playing pool among the tables at Poolcafé The Church in Leiden.
 stories:
   - image: photos/leiden/img_0541.jpg
     imageAlt: Sunset over a canal reflecting into the water.
