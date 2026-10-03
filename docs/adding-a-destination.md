@@ -72,11 +72,16 @@ recommendations:
     latitude: 52.1593318
     longitude: 4.4904674
     website: https://waagleiden.nl/
-    image: photos/leiden/some-photo.jpg
-    imageAlt: Description of the photo.
+    images:
+      - src: photos/leiden/some-photo.jpg
+        alt: Description of the photo.
+      - src: photos/leiden/some-other-photo.jpg
+        alt: Description of the second photo.
 ```
 
 Only `id`, `name`, `interests`, and `shortDescription` are required. `interests` must come from the fixed list in [src/lib/recommendations.ts](../src/lib/recommendations.ts) (`food`, `cafes`, `activities`, `nature`, `museums`, `shopping`, `day-trips`, `nightlife`, `hidden-gems`) — the build will fail with a clear error if you typo one, which is deliberate.
+
+`images` is a list, so add as many photos as you have, or leave it out entirely — that's a normal, finished-looking state, not a placeholder. A recommendation with more than one photo gets a small count badge on its card (e.g. "1 / 3"); clicking the card opens all of them in a gallery with next/previous buttons, alongside the full description and a "Show on map" button.
 
 A recommendation only gets a pin on the map once **both** `latitude` and `longitude` are set. There's no separate "verified" checkbox to remember — if the coordinates are there, it's trusted and plotted.
 

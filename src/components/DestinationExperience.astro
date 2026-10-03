@@ -146,6 +146,29 @@ const recommendationPayload = JSON.stringify(data.recommendations).replaceAll('<
   </div>
 )}
 
+{hasRecommendations && (
+  <div class="recommendation-modal" hidden id="recommendationModal">
+    <button aria-label="Close" class="modal-close">×</button>
+    <div class="modal-gallery">
+      <img alt="" />
+      <button aria-label="Previous photo" class="gallery-nav prev" type="button">‹</button>
+      <button aria-label="Next photo" class="gallery-nav next" type="button">›</button>
+      <span class="gallery-count"></span>
+    </div>
+    <div class="modal-copy">
+      <span class="label"></span>
+      <h2></h2>
+      <p class="description"></p>
+      <div class="reason" hidden>
+        <span class="label">My tip</span>
+        <p></p>
+      </div>
+      <p class="address"></p>
+      <button class="show-on-map" type="button">Show on map</button>
+    </div>
+  </div>
+)}
+
 <SiteFooter />
 
 <script is:inline id="destinationRecommendations" type="application/json" set:html={recommendationPayload}></script>
@@ -204,7 +227,27 @@ const recommendationPayload = JSON.stringify(data.recommendations).replaceAll('<
   .story-modal span { font-size:.66rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:#E8B39A; }
   .story-modal h2 { margin:10px 0 18px; font-size:clamp(2.2rem,4.5vw,4rem); line-height:1; }
   .story-modal p { font-size:1.08rem; line-height:1.7; color:#D9DFDB; }
-  .modal-close { position:absolute; top:18px; right:26px; font-size:2.4rem; color:#fff; background:none; border:0; cursor:pointer; }
+  .modal-close { position:absolute; top:18px; right:26px; font-size:2.4rem; color:#fff; background:none; border:0; cursor:pointer; z-index:1; }
+
+  .recommendation-modal { position:fixed; z-index:200; inset:0; display:grid; grid-template-columns:1.35fr .65fr; gap:45px; align-items:center; padding:6vw; background:rgba(20,26,24,.94); color:#fff; }
+  .recommendation-modal.no-photo { grid-template-columns:1fr; max-width:640px; margin:0 auto; }
+  .modal-gallery { position:relative; height:82vh; }
+  .modal-gallery img { height:100%; object-fit:contain; }
+  .recommendation-modal.no-photo .modal-gallery { display:none; }
+  .gallery-nav { position:absolute; top:50%; width:44px; height:44px; margin-top:-22px; font-size:1.6rem; color:#fff; background:rgba(20,26,24,.6); border:1px solid rgba(255,255,255,.3); border-radius:50%; cursor:pointer; }
+  .gallery-nav.prev { left:0; }
+  .gallery-nav.next { right:0; }
+  .gallery-nav[hidden] { display:none; }
+  .gallery-count { position:absolute; left:50%; bottom:0; transform:translateX(-50%); padding:4px 10px; font-size:.72rem; font-weight:600; color:#fff; background:rgba(20,26,24,.6); border-radius:999px; }
+  .modal-copy .label { display:block; font-size:.66rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:#E8B39A; }
+  .modal-copy h2 { margin:10px 0 18px; font-size:clamp(2rem,4vw,3.4rem); line-height:1.05; }
+  .modal-copy .description { font-size:1.08rem; line-height:1.7; color:#D9DFDB; }
+  .modal-copy .reason { margin-top:24px; padding-top:18px; border-top:1px solid rgba(255,255,255,.2); }
+  .modal-copy .reason p { margin-top:6px; font-size:.96rem; color:#D9DFDB; }
+  .modal-copy .address { margin-top:24px; font-size:.9rem; color:#A9B2AC; }
+  .show-on-map { display:inline-block; margin-top:28px; padding:13px 26px; font-size:.86rem; font-weight:600; color:var(--ink); background:#fff; border:0; border-radius:4px; cursor:pointer; }
+  .show-on-map:hover { background:#E8B39A; }
+  .show-on-map[hidden] { display:none; }
 
   @media (max-width:1000px) {
     .place-grid { grid-template-columns:repeat(2,1fr); }
@@ -216,6 +259,8 @@ const recommendationPayload = JSON.stringify(data.recommendations).replaceAll('<
     .stories-head { grid-template-columns:1fr; gap:0; }
     .story-modal { grid-template-columns:1fr; padding:70px 6vw 30px; overflow:auto; }
     .story-modal img { max-height:48vh; }
+    .recommendation-modal { grid-template-columns:1fr; padding:70px 6vw 30px; overflow:auto; }
+    .modal-gallery { height:48vh; }
   }
   @media (max-width:640px) {
     .place-grid { grid-template-columns:1fr; }

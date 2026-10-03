@@ -32,8 +32,9 @@ recommendations:
     latitude: 52.1559236
     longitude: 4.483884
     website: https://hortusleiden.nl/
-    image: photos/leiden/IMG_3409.JPG
-    imageAlt: Lily pond inside the tropical greenhouse at Hortus Botanicus Leiden.
+    images:
+      - src: photos/leiden/IMG_3409.JPG
+        alt: Lily pond inside the tropical greenhouse at Hortus Botanicus Leiden.
   - id: van-der-werffpark
     name: Van der Werffpark
     interests:
@@ -42,8 +43,9 @@ recommendations:
     address: Kruitschip, 2311 RS Leiden, Netherlands
     latitude: 52.1555228
     longitude: 4.4921885
-    image: photos/leiden/IMG_9243.jpeg
-    imageAlt: Sunlight filtering through the trees in Van der Werffpark.
+    images:
+      - src: photos/leiden/IMG_9243.jpeg
+        alt: Sunlight filtering through the trees in Van der Werffpark.
   - id: burcht-van-leiden
     name: Burcht van Leiden
     interests:
@@ -54,8 +56,13 @@ recommendations:
     latitude: 52.1589856
     longitude: 4.4924261
     website: https://www.visitleiden.nl/en/locations/2380897422/de-burcht
-    image: photos/leiden/IMG_9725.jpg
-    imageAlt: Stone walls of the historic Burcht van Leiden.
+    images:
+      - src: photos/leiden/IMG_9725.jpg
+        alt: Stone walls of the historic Burcht van Leiden.
+      - src: photos/leiden/IMG_9729.jpg
+        alt: Autumn leaves framing a path leading down from Burcht van Leiden toward Hooglandse Kerk.
+      - src: photos/leiden/IMG_9724.jpg
+        alt: Cloudy view over Leiden's rooftops and a distant factory chimney from the top of Burcht van Leiden.
   - id: blossom-by-kp
     name: Blossom by KP
     interests:
@@ -67,8 +74,11 @@ recommendations:
     latitude: 52.156714
     longitude: 4.4931339
     website: https://blossomleiden.nl/
-    image: photos/leiden/IMG_9717.jpeg
-    imageAlt: Brunch spread with colorful drinks at Blossom by KP in Leiden.
+    images:
+      - src: photos/leiden/IMG_9717.jpeg
+        alt: Brunch spread with colorful drinks at Blossom by KP in Leiden.
+      - src: photos/leiden/img_9715.jpg
+        alt: A matcha latte, cinnamon-dusted cappuccino, and two glasses of water served at Blossom by KP in Leiden.
   - id: botermarkt
     name: Botermarkt
     interests:
@@ -80,8 +90,9 @@ recommendations:
     address: Botermarkt, 2311 WG Leiden, Netherlands
     latitude: 52.1572277
     longitude: 4.4925886
-    image: photos/leiden/img_0113.jpg
-    imageAlt: Fresh flowers for sale at Leiden's Botermarkt market.
+    images:
+      - src: photos/leiden/img_0113.jpg
+        alt: Fresh flowers for sale at Leiden's Botermarkt market.
   - id: roos
     name: ROOS Taste & Smile
     interests:
@@ -92,8 +103,9 @@ recommendations:
     latitude: 52.1573619
     longitude: 4.4923128
     website: https://www.roosleiden.nl/
-    image: photos/leiden/IMG_8198.jpeg
-    imageAlt: Breakfast dishes served at ROOS in Leiden.
+    images:
+      - src: photos/leiden/IMG_8198.jpeg
+        alt: Breakfast dishes served at ROOS in Leiden.
   - id: waag
     name: Restaurant Waag
     interests:
@@ -112,8 +124,9 @@ recommendations:
     latitude: 52.1579707
     longitude: 4.4942105
     website: https://hooglandsekerk.com/
-    image: photos/leiden/IMG_9300.jpeg
-    imageAlt: The Gothic exterior of Hooglandse Kerk in Leiden.
+    images:
+      - src: photos/leiden/IMG_9300.jpeg
+        alt: The Gothic exterior of Hooglandse Kerk in Leiden.
   - id: museum-de-valk
     name: Molenmuseum De Valk
     interests:
@@ -124,8 +137,9 @@ recommendations:
     latitude: 52.16451
     longitude: 4.48627
     website: https://molenmuseumdevalk.nl/
-    image: photos/leiden/IMG_3436.JPG
-    imageAlt: Historic Molen De Valk windmill in central Leiden.
+    images:
+      - src: photos/leiden/IMG_3436.JPG
+        alt: Historic Molen De Valk windmill in central Leiden.
   - id: speeltuinvereniging-de-doorbraak
     name: Speeltuinvereniging De Doorbraak
     interests:
@@ -147,8 +161,9 @@ recommendations:
     latitude: 52.2543013
     longitude: 4.5898861
     website: https://olmenhorst.nl/
-    image: photos/leiden/82562e9d-779a-4843-95ba-fad5ef0ef9f9.jpg
-    imageAlt: Apple trees at Landgoed de Olmenhorst during the harvest season.
+    images:
+      - src: photos/leiden/82562e9d-779a-4843-95ba-fad5ef0ef9f9.jpg
+        alt: Apple trees at Landgoed de Olmenhorst during the harvest season.
   - id: huigpark
     name: Huigpark
     interests:
@@ -157,8 +172,9 @@ recommendations:
     address: Tweelingstraat 89, 2312 LX Leiden, Netherlands
     latitude: 52.163701
     longitude: 4.497832
-    image: photos/leiden/IMG_8139.jpeg
-    imageAlt: Bridge crossing the canal beside Huigpark in Leiden.
+    images:
+      - src: photos/leiden/IMG_8139.jpeg
+        alt: Bridge crossing the canal beside Huigpark in Leiden.
   - id: de-twee-spieghels
     name: De Twee Spieghels
     interests:
@@ -170,8 +186,9 @@ recommendations:
     latitude: 52.1580469
     longitude: 4.4932715
     website: https://www.detweespieghels.nl/
-    image: photos/leiden/IMG_1097.jpg
-    imageAlt: The Jazz sign and outdoor seating at De Twee Spieghels in Leiden.
+    images:
+      - src: photos/leiden/IMG_1097.jpg
+        alt: The Jazz sign and outdoor seating at De Twee Spieghels in Leiden.
   - id: hema
     name: HEMA
     interests:
@@ -192,8 +209,9 @@ recommendations:
     address: Haarlemmerstraat 110, 2312 GD Leiden, Netherlands
     latitude: 52.1603707
     longitude: 4.4908364
-    image: photos/leiden/img_6610.jpg
-    imageAlt: Freshly made stroopwafel from the RB Stroopwafels stand in Leiden.
+    images:
+      - src: photos/leiden/img_6610.jpg
+        alt: Freshly made stroopwafel from the RB Stroopwafels stand in Leiden.
   - id: bar-lokaal
     name: Bar Lokaal
     interests:
@@ -215,8 +233,9 @@ recommendations:
     latitude: 52.1579633
     longitude: 4.4888423
     website: https://www.waterenbloem.nl/
-    image: photos/leiden/IMG_9425.jpeg
-    imageAlt: Fresh pastries from Water & Bloem in Leiden.
+    images:
+      - src: photos/leiden/IMG_9425.jpeg
+        alt: Fresh pastries from Water & Bloem in Leiden.
   - id: cafe-de-bonte-koe
     name: Café de Bonte Koe
     interests:
@@ -237,8 +256,9 @@ recommendations:
     latitude: 52.1649605
     longitude: 4.4842083
     website: https://www.pacociao.nl/
-    image: photos/leiden/img_8118.jpg
-    imageAlt: Creative breakfast dishes served at Paco Ciao in Leiden.
+    images:
+      - src: photos/leiden/img_8118.jpg
+        alt: Creative breakfast dishes served at Paco Ciao in Leiden.
   - id: eternite-vintage
     name: Éternité Vintage
     interests:
@@ -250,8 +270,9 @@ recommendations:
     latitude: 52.1579426
     longitude: 4.4933515
     instagram: "@by.lauritsa"
-    image: photos/leiden/IMG_1096.jpg
-    imageAlt: A handmade crocheted bag by Lauritsa, hanging in the window of Éternité Vintage in Leiden.
+    images:
+      - src: photos/leiden/IMG_1096.jpg
+        alt: A handmade crocheted bag by Lauritsa, hanging in the window of Éternité Vintage in Leiden.
   - id: madame-marie
     name: Madame Marie
     interests:
@@ -262,8 +283,9 @@ recommendations:
     address: Kloksteeg 2, 2311 SL Leiden, Netherlands
     latitude: 52.1570835
     longitude: 4.4862667
-    image: photos/leiden/img_0078.jpg
-    imageAlt: Dutch apple pie and coffee at Madame Marie in Leiden.
+    images:
+      - src: photos/leiden/img_0078.jpg
+        alt: Dutch apple pie and coffee at Madame Marie in Leiden.
   - id: t-pannenkoekenhuysje-oudt-leyden
     name: "'t Pannenkoekenhuysje Oudt Leyden"
     interests:
@@ -273,8 +295,9 @@ recommendations:
     address: Steenstraat 49, 2312 BV Leiden, Netherlands
     latitude: 52.16216
     longitude: 4.484592
-    image: photos/leiden/IMG_8764.jpeg
-    imageAlt: Four ham and cheese Dutch pancakes served on blue-and-white plates at Oudt Leyden.
+    images:
+      - src: photos/leiden/IMG_8764.jpeg
+        alt: Four ham and cheese Dutch pancakes served on blue-and-white plates at Oudt Leyden.
   - id: poolcafe-the-church
     name: Poolcafé The Church
     interests:
@@ -285,8 +308,9 @@ recommendations:
     latitude: 52.15756
     longitude: 4.493668
     website: https://poolcafethechurch.nl/
-    image: photos/leiden/IMG_9794.jpeg
-    imageAlt: Playing pool among the tables at Poolcafé The Church in Leiden.
+    images:
+      - src: photos/leiden/IMG_9794.jpeg
+        alt: Playing pool among the tables at Poolcafé The Church in Leiden.
 stories:
   - image: photos/leiden/img_0541.jpg
     imageAlt: Sunset over a canal reflecting into the water.

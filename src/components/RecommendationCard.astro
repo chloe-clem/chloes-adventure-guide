@@ -8,18 +8,24 @@ interface Props {
 }
 
 const { recommendation, base } = Astro.props;
+const [coverImage] = recommendation.images;
 ---
 
 <article
-  aria-label={`View ${recommendation.name} recommendation`}
+  aria-label={`Open ${recommendation.name} recommendation`}
   class="place-card fade"
   data-place-id={recommendation.id}
   data-tags={recommendation.interests.join(' ')}
   role="button"
   tabindex="0"
 >
-  {recommendation.image && <img alt={recommendation.imageAlt} src={`${base}${recommendation.image}`} loading="lazy" />}
-  <div class:list={['copy', !recommendation.image && 'no-image']}>
+  {coverImage && (
+    <div class="photo">
+      <img alt={coverImage.alt} src={`${base}${coverImage.src}`} loading="lazy" />
+      {recommendation.images.length > 1 && <span class="photo-count">1 / {recommendation.images.length}</span>}
+    </div>
+  )}
+  <div class:list={['copy', !coverImage && 'no-image']}>
     <div class="top">
       <div>
         <span class="label">{interestLabels[recommendation.interests[0]]}</span>
@@ -44,7 +50,8 @@ const { recommendation, base } = Astro.props;
   .place-card { background:var(--paper); border:1px solid var(--line); border-radius:6px; overflow:hidden; cursor:pointer; transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease, opacity .8s ease; }
   .place-card:hover { transform:translateY(-3px); box-shadow:0 16px 36px rgba(31,42,38,.10); }
   .place-card.selected { border-color:var(--rust); box-shadow:0 0 0 1px var(--rust), 0 16px 36px rgba(31,42,38,.12); }
-  img { height:230px; }
+  .photo { position:relative; height:230px; }
+  .photo-count { position:absolute; right:10px; bottom:10px; padding:4px 9px; font-size:.68rem; font-weight:600; letter-spacing:.04em; color:#fff; background:rgba(20,26,24,.72); border-radius:999px; }
   .copy { padding:22px 22px 24px; }
   /* No photo isn't a gap waiting to be filled -- some recommendations will
      never have one, so this is styled as its own complete layout rather

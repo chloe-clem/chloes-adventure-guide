@@ -24,6 +24,11 @@ export const interestLabels: Record<Interest, string> = {
   'hidden-gems': 'Hidden Gems',
 };
 
+export interface RecommendationImage {
+  src: string;
+  alt: string;
+}
+
 export interface Recommendation {
   id: string;
   name: string;
@@ -36,8 +41,7 @@ export interface Recommendation {
   priceLevel: string;
   website: string;
   instagram?: string;
-  image: string;
-  imageAlt: string;
+  images: RecommendationImage[];
 }
 
 export const getAvailableInterests = (recommendations: Recommendation[]) =>

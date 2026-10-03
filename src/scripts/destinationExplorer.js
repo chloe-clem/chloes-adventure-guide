@@ -1,4 +1,5 @@
 import 'maplibre-gl/dist/maplibre-gl.css';
+import { interestLabels } from '../lib/recommendations';
 
 const cards=[...document.querySelectorAll('.place-card[data-place-id]')];
 const sharedFilters=[...document.querySelectorAll('.shared-filter')];
@@ -64,10 +65,11 @@ let selectedPlaceId;
 function updateMapCard(place){
   const image=mapCard?.querySelector('img');
   if(!mapCard||!image) return;
-  image.src=place.image ? new URL(place.image,new URL('../../',document.baseURI)).href : '';
-  image.alt=place.imageAlt;
-  image.hidden=!place.image;
-  mapCard.classList.toggle('without-image',!place.image);
+  const [cover]=place.images;
+  image.src=cover ? new URL(cover.src,new URL('../../',document.baseURI)).href : '';
+  image.alt=cover?.alt||'';
+  image.hidden=!cover;
+  mapCard.classList.toggle('without-image',!cover);
   mapCard.querySelector('h3').textContent=place.name;
   mapCard.querySelector('p').textContent=place.shortDescription;
   const externalMapLinks=getExternalMapLinks(place);
@@ -177,7 +179,7 @@ mapContainer?.addEventListener('keydown',event=>{
 },{capture:true});
 cards.forEach(card=>{
   const place=places.find(candidate=>candidate.card===card);
-  const activate=()=>selectPlace(place);
+  const activate=()=>openRecommendationModal(place);
   card.addEventListener('click',activate);
   card.addEventListener('keydown',event=>{
     if(event.key==='Enter'||event.key===' '){event.preventDefault();activate();}
@@ -217,4 +219,71 @@ modal?.addEventListener('click',event=>{
     modal.hidden=true;
     document.body.style.overflow='';
   }
+});
+
+const recommendationModal=document.getElementById('recommendationModal');
+let openPlace;
+let openImageIndex=0;
+
+function renderRecommendationImage(){
+  if(!recommendationModal||!openPlace) return;
+  const image=openPlace.images[openImageIndex];
+  const img=recommendationModal.querySelector('.modal-gallery img');
+  img.src=image?new URL(image.src,new URL('../../',document.baseURI)).href:'';
+  img.alt=image?.alt||'';
+  const hasMultiple=openPlace.images.length>1;
+  recommendationModal.querySelector('.gallery-nav.prev').hidden=!hasMultiple;
+  recommendationModal.querySelector('.gallery-nav.next').hidden=!hasMultiple;
+  recommendationModal.querySelector('.gallery-count').textContent=hasMultiple?`${openImageIndex+1} / ${openPlace.images.length}`:'';
+}
+
+function stepRecommendationImage(step){
+  if(!openPlace||openPlace.images.length<2) return;
+  openImageIndex=(openImageIndex+step+openPlace.images.length)%openPlace.images.length;
+  renderRecommendationImage();
+}
+
+function openRecommendationModal(place){
+  if(!recommendationModal||!place) return;
+  openPlace=place;
+  openImageIndex=0;
+  recommendationModal.classList.toggle('no-photo',place.images.length===0);
+  renderRecommendationImage();
+  recommendationModal.querySelector('.label').textContent=interestLabels[place.interests[0]];
+  recommendationModal.querySelector('h2').textContent=place.name;
+  recommendationModal.querySelector('.description').textContent=place.shortDescription;
+  const reason=recommendationModal.querySelector('.reason');
+  reason.hidden=!place.whyIRecommendIt;
+  if(place.whyIRecommendIt) reason.querySelector('p').textContent=place.whyIRecommendIt;
+  recommendationModal.querySelector('.address').textContent=place.address||'';
+  recommendationModal.querySelector('.show-on-map').hidden=!hasVerifiedCoordinates(place);
+  recommendationModal.hidden=false;
+  document.body.style.overflow='hidden';
+}
+
+function closeRecommendationModal(){
+  if(!recommendationModal) return;
+  recommendationModal.hidden=true;
+  document.body.style.overflow='';
+  openPlace=undefined;
+}
+
+recommendationModal?.querySelector('.modal-close')?.addEventListener('click',closeRecommendationModal);
+recommendationModal?.addEventListener('click',event=>{
+  if(event.target===recommendationModal) closeRecommendationModal();
+});
+recommendationModal?.querySelector('.gallery-nav.prev')?.addEventListener('click',()=>stepRecommendationImage(-1));
+recommendationModal?.querySelector('.gallery-nav.next')?.addEventListener('click',()=>stepRecommendationImage(1));
+recommendationModal?.querySelector('.show-on-map')?.addEventListener('click',()=>{
+  const place=openPlace;
+  closeRecommendationModal();
+  if(!place) return;
+  document.getElementById('map')?.scrollIntoView({behavior:prefersReducedMotion?'auto':'smooth',block:'start'});
+  selectPlace(place);
+});
+document.addEventListener('keydown',event=>{
+  if(!recommendationModal||recommendationModal.hidden) return;
+  if(event.key==='Escape') closeRecommendationModal();
+  if(event.key==='ArrowLeft') stepRecommendationImage(-1);
+  if(event.key==='ArrowRight') stepRecommendationImage(1);
 });

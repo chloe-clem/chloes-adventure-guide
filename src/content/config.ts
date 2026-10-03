@@ -6,6 +6,9 @@ import { categorySlugs } from '../data/categories';
 // personally recommends within a destination. Coordinates are optional
 // because not every recommendation has been placed on the map yet; a
 // recommendation is only plotted once both latitude and longitude are set.
+// images is a list rather than a single field because some recommendations
+// warrant more than one photo (a gallery), and some will permanently have
+// none at all -- an empty array, not a placeholder.
 const recommendation = z.object({
   id: z.string(),
   name: z.string(),
@@ -18,8 +21,7 @@ const recommendation = z.object({
   priceLevel: z.string().default(''),
   website: z.string().default(''),
   instagram: z.string().optional(),
-  image: z.string().default(''),
-  imageAlt: z.string().default(''),
+  images: z.array(z.object({ src: z.string(), alt: z.string().default('') })).default([]),
 });
 
 // One photo in a destination's "stories left untold" gallery, with a short
