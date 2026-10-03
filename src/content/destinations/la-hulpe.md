@@ -25,6 +25,6 @@ The story begins when we arrived out of the 2 platform train station and started
 
 We only stayed 1 night and had some time to kill in town before heading out to our next stop. We ventured by foot to the Château de La Hulpe which was surrounded by ponds, open fields, horses, and kilometers of forest trails. I felt like I was in a fairy tale. The best part? No one was there except the infrequent local going on their daily jog. We spent hours exploring the misty, bright green landscapes and enjoying each other's company. La Hulpe became our special find!
 
-As for the town itself, you could probably walk across the whole main street in 10 minutes. I bet it's a wonderful place to live though, with a population of only 7,300.
+As for the town itself, you could probably walk across the whole main street in 10 minutes. I bet it's a wonderful place to live though, with a population of only 7,300. Every local we met was extremely warm and welcoming. We did make the mistake of going out for food in the afternoon right as everything closed before the dinner rush, so we ended our stay at a fast food shop, soaking in the unexpected adventure we had just had!
 
 
