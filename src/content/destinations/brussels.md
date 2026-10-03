@@ -17,7 +17,7 @@ characteristics:
 storyImage: photos/brussels/img_8941.jpg
 storyImageAlt: Looking straight up at the town hall's spire and the gilded guild houses lining the Grand Place.
 pullQuote: Strolling through the city and looking at the beautiful, gilded architecture and historic buildings made for a great day. 
-storyHeading: My Honest Thoughts on Brussels
+storyHeading: My Honest Thoughts
 recommendationsHeading: Choose what matters to you.
 ---
 
