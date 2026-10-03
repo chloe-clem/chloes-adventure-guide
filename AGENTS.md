@@ -2,7 +2,7 @@
 
 ## Mission
 
-Chloe's Adventure Guide (repository: travel-atlas) is a long-term portfolio project and personal travel guide built with Astro.
+Chloe's Adventure Guide (repository: chloes-adventure-guide) is a long-term portfolio project and personal travel guide built with Astro.
 
 Tagline: "Personal recommendations for trips that change how you see the world."
 

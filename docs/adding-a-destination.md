@@ -91,4 +91,4 @@ A recommendation only gets a pin on the map once **both** `latitude` and `longit
 npm run dev
 ```
 
-Then open `http://localhost:4321/travel-atlas/destinations/<your-slug>/` and look at it. `npm run build` will fail loudly (with a specific field and reason) if a required field is missing or an interest is misspelled, so a clean build is a real signal the content is valid — not just that the file exists.
+Then open `http://localhost:4321/chloes-adventure-guide/destinations/<your-slug>/` and look at it. `npm run build` will fail loudly (with a specific field and reason) if a required field is missing or an interest is misspelled, so a clean build is a real signal the content is valid — not just that the file exists.

@@ -8,11 +8,14 @@ categories:
   - big-city
 note: The city everyone warned me not to visit.
 visitLabel: Study abroad
+featuredImage: photos/brussels/img_8938.jpg
+heroImageAlt: The Grand Place in Brussels, with the town hall's spire and the gilded guild houses under a cloudy sky.
 characteristics:
-  - Walkable
+  - Capital City
   - Historic Architecture
   - Waffles
-  - Day Trip
+storyImage: photos/brussels/img_8941.jpg
+storyImageAlt: Looking straight up at the town hall's spire and the gilded guild houses lining the Grand Place.
 pullQuote: Strolling through the city and looking at the beautiful, gilded architecture and historic buildings made for a great day. 
 storyHeading: My Honest Thoughts on Brussels
 recommendationsHeading: Choose what matters to you.

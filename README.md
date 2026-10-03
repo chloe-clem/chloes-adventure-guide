@@ -2,7 +2,7 @@
 
 Astro foundation configured for GitHub Pages at:
 
-`https://chloe-clem.github.io/travel-atlas/`
+`https://chloe-clem.github.io/chloes-adventure-guide/`
 
 ## Included
 - Calm editorial homepage built around a photo of Chloe
@@ -21,7 +21,7 @@ npm run dev
 The interactive map uses MapLibre GL JS with OpenFreeMap and does not require an account, API key, token, `.env` file, or repository secret.
 
 ## Publish
-1. Create the repository `travel-atlas` under `chloe-clem`.
+1. Create the repository `chloes-adventure-guide` under `chloe-clem`.
 2. Push this project to the `main` branch.
 3. In GitHub, open **Settings → Pages**.
 4. Set **Source** to **GitHub Actions**.
