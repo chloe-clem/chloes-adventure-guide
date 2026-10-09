@@ -60,6 +60,7 @@ const recommendationPayload = JSON.stringify(data.recommendations).replaceAll('<
     quote={data.pullQuote}
     imageSrc={data.storyImage ? assetUrl(data.storyImage) : undefined}
     imageAlt={data.storyImageAlt}
+    videoSrc={data.storyVideo ? assetUrl(data.storyVideo) : undefined}
   >
     <Content />
   </EditorialTake>

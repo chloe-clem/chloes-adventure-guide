@@ -5,9 +5,10 @@ interface Props {
   quote?: string;
   imageSrc?: string;
   imageAlt?: string;
+  videoSrc?: string;
 }
 
-const { label, heading, quote, imageSrc, imageAlt = '' } = Astro.props;
+const { label, heading, quote, imageSrc, imageAlt = '', videoSrc } = Astro.props;
 ---
 
 <section class:list={['take', imageSrc && 'has-image']} id="take">
@@ -20,7 +21,12 @@ const { label, heading, quote, imageSrc, imageAlt = '' } = Astro.props;
         <slot />
       </div>
     </div>
-    {imageSrc && <figure><img src={imageSrc} alt={imageAlt} loading="lazy" /></figure>}
+    {imageSrc && (
+      <div class:list={['take-media', videoSrc && 'has-video']}>
+        {videoSrc && <video class="take-video" autoplay muted playsinline preload="metadata" src={videoSrc} />}
+        <figure><img src={imageSrc} alt={imageAlt} loading="lazy" /></figure>
+      </div>
+    )}
   </div>
 </section>
 
@@ -34,10 +40,15 @@ const { label, heading, quote, imageSrc, imageAlt = '' } = Astro.props;
   .copy :global(p) { margin:0; color:var(--body); font-size:1.12rem; line-height:1.75; }
   .copy :global(p + p) { margin-top:24px; }
   .copy :global(p:first-child) { font-size:1.22rem; color:var(--ink); }
-  figure { margin:0; aspect-ratio:3/4; border-radius:4px; overflow:hidden; position:sticky; top:calc(var(--header-h) + 32px); }
+  .take-media { position:sticky; top:calc(var(--header-h) + 32px); display:flex; flex-direction:column; gap:20px; }
+  .take-media.has-video { position:static; }
+  .take-video { width:100%; aspect-ratio:16/9; border-radius:4px; overflow:hidden; object-fit:cover; display:block; }
+  figure { margin:0; aspect-ratio:3/4; border-radius:4px; overflow:hidden; }
   @media (max-width:1000px) {
     .has-image .take-inner { grid-template-columns:1fr; }
-    figure { position:static; aspect-ratio:4/3; max-width:740px; }
+    .take-media { position:static; }
+    figure { aspect-ratio:4/3; max-width:740px; }
+    .take-video { max-width:740px; }
   }
   @media (max-width:600px) { .take { padding:70px var(--gutter); } }
 </style>

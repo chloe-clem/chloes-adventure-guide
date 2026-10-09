@@ -54,6 +54,8 @@ const destinations = defineCollection({
     // A second photo shown alongside the story text, distinct from the hero image.
     storyImage: z.string().default(''),
     storyImageAlt: z.string().default(''),
+    // An optional muted, looping clip shown above storyImage in the same column.
+    storyVideo: z.string().default(''),
     // Optional pull-quote featured alongside the story.
     pullQuote: z.string().optional(),
     storyHeading: z.string().default('The Story'),
