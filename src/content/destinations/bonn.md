@@ -6,7 +6,7 @@ latitude: 50.7374
 longitude: 7.0982
 categories:
   - historical
-note: A place to see castles and everyday life. More fit for a curious detour than a dedicated trip, but worth a peek if you're nearby or into history.
+note: A place to see castles and experience everyday life. More fit for a curious detour than a dedicated trip, but worth a peek if you're nearby or into history.
 visitLabel: Study abroad
 featuredImage: photos/bonn/img_8880-2.jpg
 heroImageAlt: Drachenburg Castle's ornate towers and rooftops framed by tall trees.
