@@ -6,7 +6,6 @@ latitude: 52.1601
 longitude: 4.497
 categories:
   - small-town
-  - historical
 note: A quaint, walkable student city that felt like a calmer Amsterdam.
 visitLabel: Study abroad
 featuredImage: photos/leiden/img_0541.jpg
