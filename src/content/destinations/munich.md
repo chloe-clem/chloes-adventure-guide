@@ -6,7 +6,7 @@ latitude: 48.1351
 longitude: 11.582
 categories:
   - big-city
-note: A very nice city with a high quality of life and closeness to beautiful nature. 
+note: An upscale city with a high quality of life and closeness to beautiful nature. 
 visitLabel: New Year’s visit
 featuredImage: photos/munich/img_1034.jpg
 heroImageAlt: Nymphenburg Palace glowing pink and gold at sunset.
