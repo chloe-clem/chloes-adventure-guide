@@ -7,7 +7,7 @@ longitude: 2.3522
 categories:
   - big-city
   - historical
-note: A big city whose true colors shine bright at night.
+note: An iconic city whose true colors shine bright at night.
 visitLabel: Study abroad
 featuredImage: photos/paris/img_7138-sm.jpg
 heroImageAlt: The Eiffel Tower glowing gold at night above the Seine, with boats passing below.

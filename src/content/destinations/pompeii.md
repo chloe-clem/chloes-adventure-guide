@@ -6,7 +6,7 @@ latitude: 40.7462
 longitude: 14.4989
 categories:
   - historical
-note: An astonishingly advanced ancient city best explored slowly and with a guide.
+note: A city frozen in time.
 visitLabel: Study abroad
 featuredImage: photos/pompeii/img_9916.jpg
 heroImageAlt: Ancient Roman columns and ruins of the Basilica in Pompeii under a blue sky.
